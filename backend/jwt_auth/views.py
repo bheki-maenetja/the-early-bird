@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.exceptions import PermissionDenied
-from rest_framework.status import HTTP_422_UNPROCESSABLE_ENTITY, HTTP_200_OK, HTTP_202_ACCEPTED, HTTP_404_NOT_FOUND, HTTP_406_NOT_ACCEPTABLE
+from rest_framework.status import HTTP_422_UNPROCESSABLE_ENTITY, HTTP_200_OK, HTTP_201_CREATED, HTTP_202_ACCEPTED, HTTP_204_NO_CONTENT, HTTP_404_NOT_FOUND, HTTP_406_NOT_ACCEPTABLE
 from django.contrib.auth import get_user_model
 from django.conf import settings
 import jwt
@@ -23,7 +23,7 @@ class RegisterView(APIView):
 
     if serialized_user.is_valid():
       serialized_user.save()
-      return Response({ 'message': 'Registration Successful' })
+      return Response({ 'message': 'Registration Successful' }, status=HTTP_201_CREATED)
     
     return Response(serialized_user.errors, status=HTTP_422_UNPROCESSABLE_ENTITY)
 
@@ -62,15 +62,53 @@ class ProfileView(APIView):
 # Articles
 class ArticleView(APIView):
 
+  permission_classes = (IsAuthenticated, )
+
   def get(self, _request):
     articles = SavedArticle.objects.all()
     serialized_articles = ArticleSerializer(articles, many=True)
     return Response(serialized_articles.data, status=HTTP_200_OK)
   
+  def post(self, request):
+    request.data['user'] = request.user.id
+    new_article = ArticleSerializer(data=request.data)
+
+    if new_article.is_valid():
+      new_article.save()
+      return Response(new_article.data, status=HTTP_201_CREATED)
+    return Response(new_article.errors, status=HTTP_422_UNPROCESSABLE_ENTITY)
+  
+  def delete(self, request):
+    try:
+      article = SavedArticle.objects.get(pk=request.data['articleId'])
+      article.delete()
+      return Response(status=HTTP_204_NO_CONTENT)
+    except:
+      return Response({'message': 'Not found'}, status=HTTP_404_NOT_FOUND)
+  
 # Publishers
 class PublisherView(APIView):
+
+  permission_classes = (IsAuthenticated, )
 
   def get(self, _request):
     publishers = FavouritePublisher.objects.all()
     serialized_publishers = PublisherSerializer(publishers, many=True)
     return Response(serialized_publishers.data, status=HTTP_200_OK)
+
+  def post(self, request):
+    request.data['user'] = request.user.id
+    new_publisher = PublisherSerializer(data=request.data)
+
+    if new_publisher.is_valid():
+      new_publisher.save()
+      return Response(new_publisher.data, status=HTTP_201_CREATED)
+    return Response(new_publisher.errors, status=HTTP_422_UNPROCESSABLE_ENTITY)
+  
+  def delete(self, request):
+    try:
+      publisher = FavouritePublisher.objects.get(pk=request.data['publisherId'])
+      publisher.delete()
+      return Response(status=HTTP_204_NO_CONTENT)
+    except:
+      return Response({'message': 'Not found'}, status=HTTP_404_NOT_FOUND)

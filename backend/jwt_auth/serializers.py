@@ -36,13 +36,13 @@ class PublisherSerializer(serializers.ModelSerializer):
 
   class Meta:
     model = FavouritePublisher
-    exclude = ('user', )
+    fields = '__all__'
 
 class ArticleSerializer(serializers.ModelSerializer):
 
   class Meta:
     model = SavedArticle
-    exclude = ('user', )
+    fields = '__all__'
 
 # Populated Native Serializers
 class PopulatedUserSerializer(UserSerializer):
