@@ -15,6 +15,7 @@ class User(AbstractUser):
 class FavouritePublisher(models.Model):
   user = models.ForeignKey(User, related_name='favourite_publishers', null=False, on_delete=models.CASCADE)
   name = models.CharField(max_length=1000)
+  slug = models.CharField(max_length=100, null=False)
   description = models.CharField(max_length=300)
   source_url = models.CharField(max_length=1000)
 

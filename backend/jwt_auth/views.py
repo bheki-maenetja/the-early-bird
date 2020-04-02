@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.exceptions import PermissionDenied
-from rest_framework.status import HTTP_422_UNPROCESSABLE_ENTITY, HTTP_200_OK, HTTP_201_CREATED, HTTP_202_ACCEPTED, HTTP_204_NO_CONTENT, HTTP_404_NOT_FOUND, HTTP_406_NOT_ACCEPTABLE
+from rest_framework.status import HTTP_422_UNPROCESSABLE_ENTITY, HTTP_200_OK, HTTP_201_CREATED, HTTP_202_ACCEPTED, HTTP_204_NO_CONTENT, HTTP_401_UNAUTHORIZED, HTTP_404_NOT_FOUND, HTTP_406_NOT_ACCEPTABLE
 from django.contrib.auth import get_user_model
 from django.conf import settings
 import jwt
@@ -81,6 +81,8 @@ class ArticleView(APIView):
   def delete(self, request):
     try:
       article = SavedArticle.objects.get(pk=request.data['articleId'])
+      if article.user.id != request.user.id:
+        return Response({'message': 'UNAUTHORIZED!!! GET OUT OF HERE!!!'}, status=HTTP_401_UNAUTHORIZED)
       article.delete()
       return Response(status=HTTP_204_NO_CONTENT)
     except:
@@ -108,6 +110,8 @@ class PublisherView(APIView):
   def delete(self, request):
     try:
       publisher = FavouritePublisher.objects.get(pk=request.data['publisherId'])
+      if publisher.user.id != request.user.id:
+        return Response({'message': 'UNAUTHORIZED!!! GET OUT OF HERE!!!'}, status=HTTP_401_UNAUTHORIZED)
       publisher.delete()
       return Response(status=HTTP_204_NO_CONTENT)
     except:
