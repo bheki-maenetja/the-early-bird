@@ -31,7 +31,7 @@ class Navbar extends React.Component {
         <div className="container">
           <div className="navbar-brand">
             <Link className="navbar-item" onClick={() => this.setState({ navbarOpen: false })} to="/">
-              <i className="fas fa-home fa-2x"></i>
+              <i className="fas fa-dove fa-2x"></i>
             </Link>
             <a className={`navbar-burger ${navbarOpen ? 'is-active' : ''}`} onClick={this.toggleNavbar}>
               <span></span>
