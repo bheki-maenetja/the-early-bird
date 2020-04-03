@@ -34,7 +34,6 @@ class Register extends React.Component {
   }
 
   render() {
-    console.log(this.state.registerData)
     return (
       <>
       <section className="section" style={{ flexGrow: 1, display: 'flex', alignItems: 'center', overflowY: 'scroll'  }}>

@@ -45,7 +45,7 @@ class Navbar extends React.Component {
               {Authorize.isAuthenticated() && <Link className="navbar-item" onClick={() => this.setState({ navbarOpen: false })} to="/newsfeed">Newsfeed</Link>}
               {Authorize.isAuthenticated() &&
                 <>
-                <div className={`navbar-item has-dropdown ${dropdownOpen ? 'is-hoverable' : ''}`}>
+                <div className={`navbar-item has-dropdown ${dropdownOpen ? 'is-active' : ''}`}>
                   <a className="navbar-link" onMouseOver={this.toggleDropdown}>News</a>
                   <div className="navbar-dropdown">
                     <Link className="navbar-item" onClick={() => this.setState({ navbarOpen: false, dropdownOpen: false })} to="/news/business">Business</Link>
@@ -58,7 +58,7 @@ class Navbar extends React.Component {
               }
               {Authorize.isAuthenticated() && <Link className="navbar-item" onClick={() => this.setState({ navbarOpen: false })} to="/weather">Weather</Link>}
               {!Authorize.isAuthenticated() && <Link className="navbar-item" onClick={() => this.setState({ navbarOpen: false })} to="/login">Login</Link>}
-              {!Authorize.isAuthenticated() && <Link className="navbar-item" onClick={() => this.setState({ navbarOpen: false })} to="/regiter">Register</Link>}
+              {!Authorize.isAuthenticated() && <Link className="navbar-item" onClick={() => this.setState({ navbarOpen: false })} to="/register">Register</Link>}
               {Authorize.isAuthenticated() && <Link className="navbar-item" onClick={() => this.setState({ navbarOpen: false })} to="/my-profile">Profile</Link>}
               {Authorize.isAuthenticated() && <Link className="navbar-item" onClick={this.handleLogOut} to="/">Logout</Link>}
             </div>
