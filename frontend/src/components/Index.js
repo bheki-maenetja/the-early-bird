@@ -9,6 +9,7 @@ import SecureRoute from './common/SecureRoute'
 
 import Home from './common/Home'
 import Navbar from './common/Navbar'
+import Header from './common/Header'
 import ErrorPage from './common/ErrorPage'
 
 import MyProfile from './users/MyProfile'
@@ -33,6 +34,7 @@ class Index extends React.Component {
       <>
       <BrowserRouter>
         <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
+          <Header />
           <Navbar />
           <Switch>
             <Route exact path="/" component={Home} />
