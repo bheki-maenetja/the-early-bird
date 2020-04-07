@@ -30,7 +30,7 @@ class Navbar extends React.Component {
       <nav className="navbar is-dark">
         <div className="container">
           <div className="navbar-brand">
-            <Link className="navbar-item" onClick={() => this.setState({ navbarOpen: false })} to="/">
+            <Link className="navbar-item" onClick={() => this.setState({ navbarOpen: false, dropdownOpen: false })} to="/">
               <i className="fas fa-home fa-2x"></i>
             </Link>
             <a className={`navbar-burger ${navbarOpen ? 'is-active' : ''}`} onClick={this.toggleNavbar}>
@@ -41,22 +41,25 @@ class Navbar extends React.Component {
           </div>
           <div className={`navbar-menu ${navbarOpen ? 'is-active' : ''}`}>
             <div className="navbar-end">
-              {!Authorize.isAuthenticated() && <Link className="navbar-item" onClick={() => this.setState({ navbarOpen: false })} to="/news/top">Top News</Link>}
-              {Authorize.isAuthenticated() && <Link className="navbar-item" onClick={() => this.setState({ navbarOpen: false })} to="/newsfeed">Newsfeed</Link>}
+              {!Authorize.isAuthenticated() && <Link className="navbar-item" onClick={() => this.setState({ navbarOpen: false, dropdownOpen: false })} to="/news/top">Top News</Link>}
+              {Authorize.isAuthenticated() && <Link className="navbar-item" onClick={() => this.setState({ navbarOpen: false, dropdownOpen: false })} to="/newsfeed">Newsfeed</Link>}
               {Authorize.isAuthenticated() &&
                 <>
                 <div className={`navbar-item has-dropdown ${dropdownOpen ? 'is-active' : ''}`}>
                   <a className="navbar-link" onClick={this.toggleDropdown}>News</a>
-                  <div className="navbar-dropdown">
-                    <Link className="navbar-item" onClick={() => this.setState({ navbarOpen: false, dropdownOpen: false })} to="/news/top">Top News</Link>
-                    <Link className="navbar-item" onClick={() => this.setState({ navbarOpen: false, dropdownOpen: false })} to="/news/business">Business</Link>
-                    <Link className="navbar-item" onClick={() => this.setState({ navbarOpen: false, dropdownOpen: false })} to="/news/sci-tech">Science &amp; Tech</Link>
-                    <Link className="navbar-item" onClick={() => this.setState({ navbarOpen: false, dropdownOpen: false })} to="/news/sports">Sports</Link>
-                    <Link className="navbar-item" onClick={() => this.setState({ navbarOpen: false, dropdownOpen: false })} to="/news/entertainment">Entertainment</Link>
-                  </div>
+                  {dropdownOpen &&  
+                    <div className="navbar-dropdown">
+                      <Link className="navbar-item" onClick={() => this.setState({ navbarOpen: false, dropdownOpen: false })} to="/news/top">Top News</Link>
+                      <Link className="navbar-item" onClick={() => this.setState({ navbarOpen: false, dropdownOpen: false })} to="/news/business">Business</Link>
+                      <Link className="navbar-item" onClick={() => this.setState({ navbarOpen: false, dropdownOpen: false })} to="/news/sci-tech">Science &amp; Tech</Link>
+                      <Link className="navbar-item" onClick={() => this.setState({ navbarOpen: false, dropdownOpen: false })} to="/news/sports">Sports</Link>
+                      <Link className="navbar-item" onClick={() => this.setState({ navbarOpen: false, dropdownOpen: false })} to="/news/entertainment">Entertainment</Link>
+                    </div>
+                  }
                 </div>
                 </>
               }
+              {Authorize.isAuthenticated() && <Link className="navbar-item" onClick={() => this.setState({ navbarOpen: false, dropdownOpen: false })} to="/publishers">Publishers</Link>}
               {Authorize.isAuthenticated() && <Link className="navbar-item" onClick={() => this.setState({ navbarOpen: false, dropdownOpen: false })} to="/weather">Weather</Link>}
               {!Authorize.isAuthenticated() && <Link className="navbar-item" onClick={() => this.setState({ navbarOpen: false, dropdownOpen: false })} to="/login">Login</Link>}
               {!Authorize.isAuthenticated() && <Link className="navbar-item" onClick={() => this.setState({ navbarOpen: false, dropdownOpen: false })} to="/register">Register</Link>}

@@ -24,6 +24,7 @@ import Sports from './news/Sports'
 import STEM from './news/STEM'
 
 import Weather from './weather/Weather'
+import Publishers from './publishers/Publishers'
 
 class Index extends React.Component {
 
@@ -48,6 +49,7 @@ class Index extends React.Component {
             <SecureRoute path="/news/sports" component={Sports} />
             <SecureRoute path="/news/sci-tech" component={STEM} />
             <SecureRoute path="/weather" component={Weather} />
+            <SecureRoute path="/publishers" component={Publishers} />
             <Route path="/*" component={ErrorPage} />
           </Switch>
         </div>
