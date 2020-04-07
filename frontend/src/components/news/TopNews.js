@@ -1,6 +1,8 @@
 import React from 'react'
 import axios from 'axios'
 
+import Authorize from '../../lib/authorize'
+
 const newsApiKey = process.env.REACT_APP_NEWS_API_KEY
 
 class TopNews extends React.Component {
@@ -8,6 +10,8 @@ class TopNews extends React.Component {
   state = {
     articles: null,
     countryCode: 'za',
+    modalActive: false,
+    currentArticle: null,
     countries: [
       {name: "Argentina", code: "ar"},
       {name: "Australia", code: "au"},
@@ -89,9 +93,14 @@ class TopNews extends React.Component {
     this.getArticles(e.target.value)
   }
 
+  clearModal = () => {
+    this.setState({ modalActive: false, currentArticle: null })
+  }
+
   render() {
-    const { articles, countries, countryCode } = this.state
+    const { articles, countries, countryCode, modalActive, currentArticle } = this.state
     if (!articles) return false
+    console.log(articles)
     return (
       <>
       <section className="section" style={{ flexGrow: '1', overflowY: 'scroll' }}>
@@ -121,8 +130,20 @@ class TopNews extends React.Component {
                       <img src={articles[0].urlToImage} alt={articles[0].title} />
                     </figure>
                     <hr />
-                    <h1 className="title is-4">{articles[0].title}</h1>
-                    <p>{articles[0].description}</p>
+                    <h1 className="title is-4" onClick={() => this.setState({ modalActive: true, currentArticle: articles[0] })} style={{ cursor: 'pointer' }}>{articles[0].title}</h1>
+                    <p className="subtitle is-6">{articles[0].description}</p>
+                    {Authorize.isAuthenticated() &&
+                      <div className="level">
+                        <div className="level-left">
+                          <a href={articles[1].url} target="_blank">
+                            <i class="fas fa-external-link-alt fa-2x has-text-dark"></i>
+                          </a>
+                        </div>
+                        <div className="level-right">
+                          <i class="far fa-bookmark fa-2x"></i>
+                        </div>
+                      </div>
+                    }
                   </div>
                 </div>
                 <div className="tile is-parent">
@@ -131,8 +152,20 @@ class TopNews extends React.Component {
                       <img src={articles[1].urlToImage} alt={articles[1].title} />
                     </figure>
                     <hr />
-                    <h2 className="title is-5">{articles[1].title}</h2>
-                    <p>{articles[1].description}</p>
+                    <h2 className="title is-5" onClick={() => this.setState({ modalActive: true, currentArticle: articles[1] })} style={{ cursor: 'pointer' }}>{articles[1].title}</h2>
+                    <p className="subtitle is-6">{articles[1].description}</p>
+                    {Authorize.isAuthenticated() && 
+                      <div className="level">
+                        <div className="level-left">
+                          <a href={articles[1].url} target="_blank">
+                            <i class="fas fa-external-link-alt fa-2x has-text-dark"></i>
+                          </a>
+                        </div>
+                        <div className="level-right">
+                          <i class="far fa-bookmark fa-2x"></i>
+                        </div>
+                      </div>
+                    }
                   </div>
                 </div>
               </div>
@@ -147,13 +180,57 @@ class TopNews extends React.Component {
                     <img src={art.urlToImage} alt={art.title} />
                   </figure>
                   <hr />
-                  <h3 className="title is-5">{art.title}</h3>
-                  <p>{art.description}</p>
+                  <h3 className="title is-5" onClick={() => this.setState({ modalActive: true, currentArticle: art })} style={{ cursor: 'pointer' }}>{art.title}</h3>
+                  <p className="subtitle is-6">{art.description}</p>
+                  <div className="container">
+                    {Authorize.isAuthenticated() &&
+                      <div className="level">
+                        <div className="level-left">
+                          <a href={art.url} target="_blank">
+                            <i class="fas fa-external-link-alt fa-2x has-text-dark"></i>
+                          </a>
+                        </div>
+                        <div className="level-right">
+                          <i class="far fa-bookmark fa-2x"></i>
+                        </div>
+                      </div>
+                    }
+                  </div>
                 </div>
               </div>
               </>
             ))}
           </div>
+          {modalActive &&
+          <>
+          <div className="modal is-active">
+            <div className="modal-background" onClick={this.clearModal}></div>
+            <div className="modal-content box">
+              <figure className="image is-4by3">
+                <img src={currentArticle.urlToImage} alt={currentArticle.title} />
+              </figure>
+              <hr />
+              <h1 className="title is-5">{currentArticle.title}</h1>
+              <p className="subtitle is-6">{currentArticle.content ? currentArticle.content : currentArticle.description}</p>
+              {Authorize.isAuthenticated() &&
+                <>
+                <hr />
+                <div className="level">
+                  <div className="level-left is-fullwidth">
+                    <a href={currentArticle.url} target="_blank">
+                      <button className="button is-info modal-card-title is-fullwidth">View Source&ensp;<i class="fas fa-external-link-alt has-text-white"></i></button>
+                    </a>
+                  </div>
+                  <div className="level-right">
+                    <button className="button is-success modal-card-title is-fullwidth">Save Article&ensp;<i class="fas fa-bookmark has-text-white"></i></button>
+                  </div>
+                </div>
+                </>
+              }
+            </div>
+          </div>
+          </>
+          }
         </div>
       </section>
       </>
