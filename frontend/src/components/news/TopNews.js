@@ -115,38 +115,44 @@ class TopNews extends React.Component {
           <div className="tile is-ancestor">
             <div className="tile is-vertical is-parent">
               <div className="tile">
-                <div className="tile is-parent is-7">
-                  <div className="tile is-child box">
-                    <figure className="image is-4by3">
+                <div className="tile is-parent is-8">
+                  <div className="tile is-child">
+                    <figure className="image is-3by2">
                       <img src={articles[0].urlToImage} alt={articles[0].title} />
                     </figure>
-                    <h1 className="title is-3">{articles[0].title}</h1>
+                    <hr />
+                    <h1 className="title is-4">{articles[0].title}</h1>
                     <p>{articles[0].description}</p>
                   </div>
                 </div>
                 <div className="tile is-parent">
-                  <div className="tile is-child box" >
-                    <figure className="image is-4by3">
+                  <div className="tile is-child" >
+                    <figure className="image is-3by2">
                       <img src={articles[1].urlToImage} alt={articles[1].title} />
                     </figure>
-                    <h2 className="subtitle is-5">{articles[1].title}</h2>
+                    <hr />
+                    <h2 className="title is-5">{articles[1].title}</h2>
                     <p>{articles[1].description}</p>
                   </div>
                 </div>
               </div>
-              <div className="columns is-mobile is-multiline">
-                {articles.slice(2).map(art => (
-                  <>
-                  <div className="column is-one-third-desktop is-one-quarter-tablet is-fullwidth-mobile">
-                    <div className="tile is-child box" style={{ height: '100%' }}>
-                      <h3 className="title is-5">{art.title}</h3>
-                      <p>{art.description}</p>
-                    </div>
-                  </div>
-                  </>
-                ))}
-              </div>
             </div>
+          </div>
+          <div className="columns is-mobile is-multiline">
+            {articles.slice(2).map(art => (
+              <>
+              <div className="column is-one-third-desktop is-half-tablet is-full-mobile">
+                <div className="" style={{ height: '100%' }}>
+                  <figure className="image is-3by2">
+                    <img src={art.urlToImage} alt={art.title} />
+                  </figure>
+                  <hr />
+                  <h3 className="title is-5">{art.title}</h3>
+                  <p>{art.description}</p>
+                </div>
+              </div>
+              </>
+            ))}
           </div>
         </div>
       </section>
