@@ -1,5 +1,8 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
+
+import Authorize from '../../lib/authorize'
 
 const newsApiKey = process.env.REACT_APP_NEWS_API_KEY
 
@@ -8,6 +11,8 @@ class Business extends React.Component {
   state = {
     articles: null,
     countryCode: 'za',
+    modalActive: false,
+    currentArticle: null,
     countries: [
       {name: "Argentina", code: "ar"},
       {name: "Australia", code: "au"},
@@ -89,23 +94,33 @@ class Business extends React.Component {
     this.getArticles(e.target.value)
   }
 
+  setArticle = (article) => {
+    if (Authorize.isAuthenticated()) {
+      this.setState({ modalActive: true, currentArticle: article })
+    }
+  }
+
+  clearModal = () => {
+    this.setState({ modalActive: false, currentArticle: null })
+  }
+
   render() {
-    const { articles, countries, countryCode } = this.state
+    const { articles, countries, countryCode, modalActive, currentArticle } = this.state
     if (!articles) return false
     return (
       <>
       <section className="section" style={{ flexGrow: '1', overflowY: 'scroll' }}>
         <div className="container">
-          <h1 className="title is-1 has-text-centered">Top Business Headlines from around the World</h1>
+          <h1 className="title is-1 has-text-centered">Business Headlines from around the World</h1>
           <hr />
           <div className="container has-text-centered">
             <form>
               <div className="field">
                 <label className="label">Country</label>
-                <select onChange={this.changeCountry}>
+                <select onChange={this.changeCountry} defaultValue={countryCode}>
                   {countries.map(count => (
                     <>
-                    {count.code === countryCode ? <option key={count.code} value={count.code} selected>{count.name}</option> : <option key={count.code} value={count.code}>{count.name}</option>}
+                    <option key={count.code} value={count.code}>{count.name}</option>
                     </>
                   ))}
                 </select>
@@ -115,39 +130,119 @@ class Business extends React.Component {
           <div className="tile is-ancestor">
             <div className="tile is-vertical is-parent">
               <div className="tile">
-                <div className="tile is-parent is-7">
-                  <div className="tile is-child box">
-                    <figure className="image is-4by3">
+                <div className="tile is-parent is-8">
+                  <div className="tile is-child">
+                    <figure className="image is-3by2">
                       <img src={articles[0].urlToImage} alt={articles[0].title} />
                     </figure>
-                    <h1 className="title is-3">{articles[0].title}</h1>
-                    <p>{articles[0].description}</p>
+                    <hr />
+                    <h1 className="title is-4" onClick={() => this.setArticle(articles[0])} style={{ cursor: 'pointer' }}>
+                      {Authorize.isAuthenticated() ? articles[0].title : <Link to="/login" className="has-text-dark">{articles[0].title}</Link>}
+                    </h1>
+                    <p className="subtitle is-6">{articles[0].description}</p>
+                    {Authorize.isAuthenticated() &&
+                      <div className="level">
+                        <div className="level-left">
+                          <a href={articles[1].url} target="_blank">
+                            <i className="fas fa-external-link-alt fa-2x has-text-dark"></i>
+                          </a>
+                        </div>
+                        <div className="level-right">
+                          <i className="far fa-bookmark fa-2x"></i>
+                        </div>
+                      </div>
+                    }
                   </div>
                 </div>
                 <div className="tile is-parent">
-                  <div className="tile is-child box" >
-                    <figure className="image is-4by3">
+                  <div className="tile is-child" >
+                    <figure className="image is-3by2">
                       <img src={articles[1].urlToImage} alt={articles[1].title} />
                     </figure>
-                    <h2 className="subtitle is-5">{articles[1].title}</h2>
-                    <p>{articles[1].description}</p>
+                    <hr />
+                    <h2 className="title is-5" onClick={() => this.setArticle(articles[1])} style={{ cursor: 'pointer' }}>
+                      {Authorize.isAuthenticated() ? articles[1].title : <Link to="/login" className="has-text-dark">{articles[1].title}</Link>}
+                    </h2>
+                    <p className="subtitle is-6">{articles[1].description}</p>
+                    {Authorize.isAuthenticated() && 
+                      <div className="level">
+                        <div className="level-left">
+                          <a href={articles[1].url} target="_blank">
+                            <i className="fas fa-external-link-alt fa-2x has-text-dark"></i>
+                          </a>
+                        </div>
+                        <div className="level-right">
+                          <i className="far fa-bookmark fa-2x"></i>
+                        </div>
+                      </div>
+                    }
                   </div>
                 </div>
               </div>
-              <div className="columns is-mobile is-multiline">
-                {articles.slice(2).map(art => (
-                  <>
-                  <div className="column is-one-third-desktop is-one-quarter-tablet is-fullwidth-mobile">
-                    <div className="tile is-child box" style={{ height: '100%' }}>
-                      <h3 className="title is-5">{art.title}</h3>
-                      <p>{art.description}</p>
-                    </div>
-                  </div>
-                  </>
-                ))}
-              </div>
             </div>
           </div>
+          <div className="columns is-mobile is-multiline">
+            {articles.slice(2).map(art => (
+              <>
+              <div className="column is-one-third-desktop is-half-tablet is-full-mobile">
+                <div className="" style={{ height: '100%' }}>
+                  <figure className="image is-3by2">
+                    <img src={art.urlToImage} alt={art.title} />
+                  </figure>
+                  <hr />
+                  <h3 className="title is-5" onClick={() => this.setArticle(art)} style={{ cursor: 'pointer' }}>
+                    {Authorize.isAuthenticated() ? art.title : <Link to="/login" className="has-text-dark">{art.title}</Link>}
+                  </h3>
+                  <p className="subtitle is-6">{art.description}</p>
+                  <div className="container">
+                    {Authorize.isAuthenticated() &&
+                      <div className="level">
+                        <div className="level-left">
+                          <a href={art.url} target="_blank">
+                            <i className="fas fa-external-link-alt fa-2x has-text-dark"></i>
+                          </a>
+                        </div>
+                        <div className="level-right">
+                          <i className="far fa-bookmark fa-2x"></i>
+                        </div>
+                      </div>
+                    }
+                  </div>
+                </div>
+              </div>
+              </>
+            ))}
+          </div>
+          {modalActive &&
+          <>
+          <div className="modal is-active">
+            <div className="modal-background" onClick={this.clearModal}></div>
+            <div className="modal-content box">
+              <figure className="image is-4by3">
+                <img src={currentArticle.urlToImage} alt={currentArticle.title} />
+              </figure>
+              <hr />
+              <h1 className="title is-5">{currentArticle.title}</h1>
+              <p className="subtitle is-6">{currentArticle.content ? currentArticle.content : currentArticle.description}</p>
+              {Authorize.isAuthenticated() &&
+                <>
+                <hr />
+                <div className="level">
+                  <div className="level-left is-fullwidth">
+                    <a href={currentArticle.url} target="_blank">
+                      <button className="button is-info modal-card-title is-fullwidth">View Source&ensp;<i className="fas fa-external-link-alt has-text-white"></i></button>
+                    </a>
+                  </div>
+                  <div className="level-right">
+                    <button className="button is-success modal-card-title is-fullwidth">Save Article&ensp;<i className="fas fa-bookmark has-text-white"></i></button>
+                  </div>
+                </div>
+                </>
+              }
+            </div>
+          </div>
+          </>
+          }
         </div>
       </section>
       </>

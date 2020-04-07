@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
 
 import Authorize from '../../lib/authorize'
@@ -93,6 +94,12 @@ class TopNews extends React.Component {
     this.getArticles(e.target.value)
   }
 
+  setArticle = (article) => {
+    if (Authorize.isAuthenticated()) {
+      this.setState({ modalActive: true, currentArticle: article })
+    }
+  }
+
   clearModal = () => {
     this.setState({ modalActive: false, currentArticle: null })
   }
@@ -100,7 +107,6 @@ class TopNews extends React.Component {
   render() {
     const { articles, countries, countryCode, modalActive, currentArticle } = this.state
     if (!articles) return false
-    console.log(articles)
     return (
       <>
       <section className="section" style={{ flexGrow: '1', overflowY: 'scroll' }}>
@@ -111,10 +117,10 @@ class TopNews extends React.Component {
             <form>
               <div className="field">
                 <label className="label">Country</label>
-                <select onChange={this.changeCountry}>
+                <select onChange={this.changeCountry} defaultValue={countryCode}>
                   {countries.map(count => (
                     <>
-                    {count.code === countryCode ? <option key={count.code} value={count.code} selected>{count.name}</option> : <option key={count.code} value={count.code}>{count.name}</option>}
+                    <option key={count.code} value={count.code}>{count.name}</option>
                     </>
                   ))}
                 </select>
@@ -130,17 +136,19 @@ class TopNews extends React.Component {
                       <img src={articles[0].urlToImage} alt={articles[0].title} />
                     </figure>
                     <hr />
-                    <h1 className="title is-4" onClick={() => this.setState({ modalActive: true, currentArticle: articles[0] })} style={{ cursor: 'pointer' }}>{articles[0].title}</h1>
+                    <h1 className="title is-4" onClick={() => this.setArticle(articles[0])} style={{ cursor: 'pointer' }}>
+                      {Authorize.isAuthenticated() ? articles[0].title : <Link to="/login" className="has-text-dark">{articles[0].title}</Link>}
+                    </h1>
                     <p className="subtitle is-6">{articles[0].description}</p>
                     {Authorize.isAuthenticated() &&
                       <div className="level">
                         <div className="level-left">
                           <a href={articles[1].url} target="_blank">
-                            <i class="fas fa-external-link-alt fa-2x has-text-dark"></i>
+                            <i className="fas fa-external-link-alt fa-2x has-text-dark"></i>
                           </a>
                         </div>
                         <div className="level-right">
-                          <i class="far fa-bookmark fa-2x"></i>
+                          <i className="far fa-bookmark fa-2x"></i>
                         </div>
                       </div>
                     }
@@ -152,17 +160,19 @@ class TopNews extends React.Component {
                       <img src={articles[1].urlToImage} alt={articles[1].title} />
                     </figure>
                     <hr />
-                    <h2 className="title is-5" onClick={() => this.setState({ modalActive: true, currentArticle: articles[1] })} style={{ cursor: 'pointer' }}>{articles[1].title}</h2>
+                    <h2 className="title is-5" onClick={() => this.setArticle(articles[1])} style={{ cursor: 'pointer' }}>
+                      {Authorize.isAuthenticated() ? articles[1].title : <Link to="/login" className="has-text-dark">{articles[1].title}</Link>}
+                    </h2>
                     <p className="subtitle is-6">{articles[1].description}</p>
                     {Authorize.isAuthenticated() && 
                       <div className="level">
                         <div className="level-left">
                           <a href={articles[1].url} target="_blank">
-                            <i class="fas fa-external-link-alt fa-2x has-text-dark"></i>
+                            <i className="fas fa-external-link-alt fa-2x has-text-dark"></i>
                           </a>
                         </div>
                         <div className="level-right">
-                          <i class="far fa-bookmark fa-2x"></i>
+                          <i className="far fa-bookmark fa-2x"></i>
                         </div>
                       </div>
                     }
@@ -180,18 +190,20 @@ class TopNews extends React.Component {
                     <img src={art.urlToImage} alt={art.title} />
                   </figure>
                   <hr />
-                  <h3 className="title is-5" onClick={() => this.setState({ modalActive: true, currentArticle: art })} style={{ cursor: 'pointer' }}>{art.title}</h3>
+                  <h3 className="title is-5" onClick={() => this.setArticle(art)} style={{ cursor: 'pointer' }}>
+                    {Authorize.isAuthenticated() ? art.title : <Link to="/login" className="has-text-dark">{art.title}</Link>}
+                  </h3>
                   <p className="subtitle is-6">{art.description}</p>
                   <div className="container">
                     {Authorize.isAuthenticated() &&
                       <div className="level">
                         <div className="level-left">
                           <a href={art.url} target="_blank">
-                            <i class="fas fa-external-link-alt fa-2x has-text-dark"></i>
+                            <i className="fas fa-external-link-alt fa-2x has-text-dark"></i>
                           </a>
                         </div>
                         <div className="level-right">
-                          <i class="far fa-bookmark fa-2x"></i>
+                          <i className="far fa-bookmark fa-2x"></i>
                         </div>
                       </div>
                     }
@@ -218,11 +230,11 @@ class TopNews extends React.Component {
                 <div className="level">
                   <div className="level-left is-fullwidth">
                     <a href={currentArticle.url} target="_blank">
-                      <button className="button is-info modal-card-title is-fullwidth">View Source&ensp;<i class="fas fa-external-link-alt has-text-white"></i></button>
+                      <button className="button is-info modal-card-title is-fullwidth">View Source&ensp;<i className="fas fa-external-link-alt has-text-white"></i></button>
                     </a>
                   </div>
                   <div className="level-right">
-                    <button className="button is-success modal-card-title is-fullwidth">Save Article&ensp;<i class="fas fa-bookmark has-text-white"></i></button>
+                    <button className="button is-success modal-card-title is-fullwidth">Save Article&ensp;<i className="fas fa-bookmark has-text-white"></i></button>
                   </div>
                 </div>
                 </>
