@@ -54,6 +54,23 @@ class MyProfile extends React.Component {
     this.setState({ modalActive: false, currentArticle: null })
   }
 
+  unsaveArticle = async (article) => {
+    try {
+      const res = await axios.delete('/api/users/articles/', {
+        headers: {
+          Authorization: `Bearer ${Authorize.getToken()}`
+        },
+        data: {
+          articleId: article.id
+        }
+      })
+      console.log(res)
+      this.refreshPage()
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
   unfollowPublisher = async (source) => {
     try {
       const res = await axios.delete('/api/users/publishers/', {
@@ -151,7 +168,7 @@ class MyProfile extends React.Component {
                             </a>
                           </div>
                           <div className="level-right">
-                            <i className="fas fa-bookmark fa-2x"></i>
+                            <i className="fas fa-bookmark fa-2x" onClick={() => this.unsaveArticle(art)} style={{ cursor: 'pointer' }}></i>
                           </div>
                         </div>
                       </div>
@@ -224,7 +241,7 @@ class MyProfile extends React.Component {
                       </a>
                     </div>
                     <div className="level-right">
-                      <button className="button is-success modal-card-title is-fullwidth">Save Article&ensp;<i className="fas fa-bookmark has-text-white"></i></button>
+                      <button className="button is-danger modal-card-title is-fullwidth" onClick={() => this.unsaveArticle(currentArticle)}>Remove Article&ensp;<i className="far fa-trash-alt has-text-white"></i></button>
                     </div>
                   </div>
                   </>
