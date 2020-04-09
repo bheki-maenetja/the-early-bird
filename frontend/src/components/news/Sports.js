@@ -9,6 +9,7 @@ const newsApiKey = process.env.REACT_APP_NEWS_API_KEY
 class Sports extends React.Component {
 
   state = {
+    userData: null,
     articles: null,
     countryCode: 'za',
     modalActive: false,
@@ -73,8 +74,28 @@ class Sports extends React.Component {
 
   async componentDidMount() {
     try {
-      const res = await axios.get(`https://newsapi.org/v2/top-headlines?country=za&category=sports&apiKey=${newsApiKey}`)
-      this.setState({ articles: res.data.articles })
+      const res = await Promise.all([
+        axios.get('/api/users/my-profile/', {
+          headers: {
+            Authorization: `Bearer ${Authorize.getToken()}`
+          }
+        }),
+        axios.get(`https://newsapi.org/v2/top-headlines?country=za&category=sports&apiKey=${newsApiKey}`)
+      ])
+      this.setState({ articles: res[1].data.articles, userData: res[0].data })
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  refreshPage = async () => {
+    try {
+      const res = await axios.get('/api/users/my-profile/', {
+        headers: {
+          Authorization: `Bearer ${Authorize.getToken()}`
+        }
+      })
+      this.setState({ userData: res.data  })
     } catch (err) {
       console.log(err)
     }
@@ -94,9 +115,54 @@ class Sports extends React.Component {
     this.getArticles(e.target.value)
   }
 
-  setArticle = (article) => {
+  viewArticle = (article) => {
     if (Authorize.isAuthenticated()) {
       this.setState({ modalActive: true, currentArticle: article })
+    }
+  }
+
+  saveArticle = async (article) => {
+    const artData = {
+      publisher: article.source.name ? article.source.name : 'N/A',
+      author: article.author ? article.author : 'N/A',
+      title: article.title ? article.title : 'N/A',
+      description: article.description ? article.description : 'N/A',
+      content: article.content ? article.content : 'N/A',
+      publish_date: article.publishedAt ? article.publishedAt : 'N/A',
+      source_url: article.url ? article.url : 'N/A',
+      image_url: article.urlToImage ? article.urlToImage : 'N/A',
+    }
+
+    try {
+      const res = await axios.post('/api/users/articles/', artData, {
+        headers: {
+          Authorization: `Bearer ${Authorize.getToken()}`
+        }
+      })
+      console.log(res)
+      this.refreshPage()
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
+  unsaveArticle = async (article) => {
+    const { userData } = this.state
+    const chosenArticle = userData.saved_articles.find(art => art.title === article.title)
+
+    try {
+      const res = await axios.delete('/api/users/articles/', {
+        headers: {
+          Authorization: `Bearer ${Authorize.getToken()}`
+        },
+        data: {
+          articleId: chosenArticle.id
+        }
+      })
+      console.log(res)
+      this.refreshPage()
+    } catch (err) {
+      console.log(err)
     }
   }
 
@@ -105,14 +171,20 @@ class Sports extends React.Component {
   }
 
   render() {
-    const { articles, countries, countryCode, modalActive, currentArticle } = this.state
-    if (!articles) return false
+    const { articles, userData, countries, countryCode, modalActive, currentArticle } = this.state
+    console.log(userData)
+    let userArts
+    if (articles && userData && Authorize.isAuthenticated()) {
+      userArts = userData.saved_articles.map(art => art.title)
+    }
     return (
       <>
       <section className="section" style={{ flexGrow: '1', overflowY: 'scroll' }}>
         <div className="container">
           <h1 className="title is-1 has-text-centered">Top Sports Headlines from around the World</h1>
           <hr />
+          {articles ? 
+          <>
           <div className="container has-text-centered">
             <form>
               <div className="field">
@@ -136,7 +208,7 @@ class Sports extends React.Component {
                       <img src={articles[0].urlToImage} alt={articles[0].title} />
                     </figure>
                     <hr />
-                    <h1 className="title is-4" onClick={() => this.setArticle(articles[0])} style={{ cursor: 'pointer' }}>
+                    <h1 className="title is-4" onClick={() => this.viewArticle(articles[0])} style={{ cursor: 'pointer' }}>
                       {Authorize.isAuthenticated() ? articles[0].title : <Link to="/login" className="has-text-dark">{articles[0].title}</Link>}
                     </h1>
                     <p className="subtitle is-6">{articles[0].description}</p>
@@ -148,7 +220,15 @@ class Sports extends React.Component {
                           </a>
                         </div>
                         <div className="level-right">
-                          <i className="far fa-bookmark fa-2x"></i>
+                          {userArts.includes(articles[0].title) ? 
+                          <>
+                            <i className="fas fa-bookmark fa-2x" style={{ cursor: 'pointer' }} onClick={() => this.unsaveArticle(articles[0])}></i>
+                          </>
+                          :
+                          <>
+                            <i className="far fa-bookmark fa-2x" style={{ cursor: 'pointer' }} onClick={() => this.saveArticle(articles[0])}></i>
+                          </>
+                          }
                         </div>
                       </div>
                     }
@@ -160,7 +240,7 @@ class Sports extends React.Component {
                       <img src={articles[1].urlToImage} alt={articles[1].title} />
                     </figure>
                     <hr />
-                    <h2 className="title is-5" onClick={() => this.setArticle(articles[1])} style={{ cursor: 'pointer' }}>
+                    <h2 className="title is-5" onClick={() => this.viewArticle(articles[1])} style={{ cursor: 'pointer' }}>
                       {Authorize.isAuthenticated() ? articles[1].title : <Link to="/login" className="has-text-dark">{articles[1].title}</Link>}
                     </h2>
                     <p className="subtitle is-6">{articles[1].description}</p>
@@ -172,7 +252,15 @@ class Sports extends React.Component {
                           </a>
                         </div>
                         <div className="level-right">
-                          <i className="far fa-bookmark fa-2x"></i>
+                          {userArts.includes(articles[1].title) ? 
+                          <>
+                            <i className="fas fa-bookmark fa-2x" style={{ cursor: 'pointer' }} onClick={() => this.unsaveArticle(articles[1])}></i>
+                          </>
+                          :
+                          <>
+                            <i className="far fa-bookmark fa-2x" style={{ cursor: 'pointer' }} onClick={() => this.saveArticle(articles[1])}></i>
+                          </>
+                          }
                         </div>
                       </div>
                     }
@@ -190,7 +278,7 @@ class Sports extends React.Component {
                     <img src={art.urlToImage} alt={art.title} />
                   </figure>
                   <hr />
-                  <h3 className="title is-5" onClick={() => this.setArticle(art)} style={{ cursor: 'pointer' }}>
+                  <h3 className="title is-5" onClick={() => this.viewArticle(art)} style={{ cursor: 'pointer' }}>
                     {Authorize.isAuthenticated() ? art.title : <Link to="/login" className="has-text-dark">{art.title}</Link>}
                   </h3>
                   <p className="subtitle is-6">{art.description}</p>
@@ -203,7 +291,15 @@ class Sports extends React.Component {
                           </a>
                         </div>
                         <div className="level-right">
-                          <i className="far fa-bookmark fa-2x"></i>
+                          {userArts.includes(art.title) ? 
+                          <>
+                            <i className="fas fa-bookmark fa-2x" style={{ cursor: 'pointer' }} onClick={() => this.unsaveArticle(art)}></i>
+                          </>
+                          :
+                          <>
+                            <i className="far fa-bookmark fa-2x" style={{ cursor: 'pointer' }} onClick={() => this.saveArticle(art)}></i>
+                          </>
+                          }
                         </div>
                       </div>
                     }
@@ -234,7 +330,15 @@ class Sports extends React.Component {
                     </a>
                   </div>
                   <div className="level-right">
-                    <button className="button is-success modal-card-title is-fullwidth">Save Article&ensp;<i className="fas fa-bookmark has-text-white"></i></button>
+                    {userArts.includes(currentArticle.title) ? 
+                    <>
+                    <button className="button is-danger modal-card-title is-fullwidth" onClick={() => this.unsaveArticle(currentArticle)}>Remove from Bookmarks&ensp;<i className="far fa-trash-alt has-text-white"></i></button>
+                    </>
+                    :
+                    <>
+                    <button className="button is-success modal-card-title is-fullwidth" onClick={() => this.saveArticle(currentArticle)}>Save Article&ensp;<i className="far fa-bookmark has-text-white"></i></button>
+                    </>
+                    }
                   </div>
                 </div>
                 </>
@@ -243,6 +347,13 @@ class Sports extends React.Component {
           </div>
           </>
           }
+          </>
+          :
+          <>
+          <h2 className="title is-2">Loading...</h2>
+          <progress class="progress is-success" max="100">30%</progress>
+          </>
+          } 
         </div>
       </section>
       </>
