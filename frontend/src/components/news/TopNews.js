@@ -100,7 +100,7 @@ class TopNews extends React.Component {
           Authorization: `Bearer ${Authorize.getToken()}`
         }
       })
-      this.setState({ userData: res.data, modalActive: false, currentArticle: null  })
+      this.setState({ userData: res.data  })
     } catch (err) {
       console.log(err)
     }
@@ -335,7 +335,15 @@ class TopNews extends React.Component {
                     </a>
                   </div>
                   <div className="level-right">
-                    <button className="button is-success modal-card-title is-fullwidth">Save Article&ensp;<i className="fas fa-bookmark has-text-white"></i></button>
+                    {userArts.includes(currentArticle.title) ? 
+                    <>
+                    <button className="button is-danger modal-card-title is-fullwidth" onClick={() => this.unsaveArticle(currentArticle)}>Remove from Bookmarks&ensp;<i className="far fa-trash-alt has-text-white"></i></button>
+                    </>
+                    :
+                    <>
+                    <button className="button is-success modal-card-title is-fullwidth" onClick={() => this.saveArticle(currentArticle)}>Save Article&ensp;<i className="far fa-bookmark has-text-white"></i></button>
+                    </>
+                    }
                   </div>
                 </div>
                 </>
