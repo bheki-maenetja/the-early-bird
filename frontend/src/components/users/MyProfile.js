@@ -1,4 +1,5 @@
 import React from 'react'
+// import { Link } from 'react-router-dom'
 import axios from 'axios'
 
 import Authorize from '../../lib/authorize'
@@ -25,6 +26,20 @@ class MyProfile extends React.Component {
     }
   }
 
+  refreshPage = async () => {
+    const { selectedTab } = this.state
+    try {
+      const res = await axios.get('/api/users/my-profile/', {
+        headers: {
+          Authorization: `Bearer ${Authorize.getToken()}`
+        }
+      })
+      this.setState({ modalActive: false, currentArticle: null, selectedTab, userData: res.data })
+    } catch (err) {
+      console.log(err)
+    }
+  }
+
   changeTabs = (selectedTab) => {
     this.setState({ selectedTab })
   }
@@ -37,6 +52,23 @@ class MyProfile extends React.Component {
 
   clearModal = () => {
     this.setState({ modalActive: false, currentArticle: null })
+  }
+
+  unfollowPublisher = async (source) => {
+    try {
+      const res = await axios.delete('/api/users/publishers/', {
+        headers: {
+          Authorization: `Bearer ${Authorize.getToken()}`
+        },
+        data: {
+          publisherId: source.id
+        }
+      })
+      console.log(res)
+      this.refreshPage()
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   render() {
@@ -89,6 +121,16 @@ class MyProfile extends React.Component {
             {selectedTab === 'articles' &&
               <>
               <div className="columns is-mobile is-multiline">
+                {userData.saved_articles.length === 0 ?
+                <>
+                <div className="column is-12">
+                  <div className="container">
+                    <h1 className="subtitle is-2 has-text-centered">No Articles</h1>
+                  </div>
+                </div>
+                </>
+                :
+                <>
                 {userData.saved_articles.map(art => (
                   <>
                   <div className="column is-one-third-desktop is-half-tablet is-full-mobile">
@@ -117,12 +159,24 @@ class MyProfile extends React.Component {
                   </div>
                   </>
                 ))}
+                </>
+                }
               </div>
               </> 
             }
             {selectedTab === 'publishers' &&
               <>
               <div className="columns is-mobile is-multiline">
+                {userData.favourite_publishers.length === 0 ?
+                <>
+                <div className="column is-12">
+                  <div className="container">
+                    <h1 className="subtitle is-2 has-text-centered">No Publishers</h1>
+                  </div>
+                </div>
+                </> 
+                :
+                <>
                 {userData.favourite_publishers.map(source => (
                   <>
                   <div className="column is-one-third-desktop is-half-tablet is-full-mobile">
@@ -137,13 +191,15 @@ class MyProfile extends React.Component {
                           </a>
                         </div>
                         <div className="level-right">
-                          <button className="button is-danger">Unfollow</button>
+                          <button className="button is-danger" onClick={() => this.unfollowPublisher(source)}>Unfollow</button>
                         </div>
                       </div>
                     </div>
                   </div>
                   </>
                 ))}
+                </>
+                }
               </div>
               </>
             }
