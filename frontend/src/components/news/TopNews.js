@@ -74,15 +74,20 @@ class TopNews extends React.Component {
 
   async componentDidMount() {
     try {
-      const res = await Promise.all([
-        axios.get('/api/users/my-profile/', {
-          headers: {
-            Authorization: `Bearer ${Authorize.getToken()}`
-          }
-        }),
-        axios.get(`https://newsapi.org/v2/top-headlines?country=za&apiKey=${newsApiKey}`),
-      ])
-      this.setState({ articles: res[1].data.articles, userData: res[0].data })
+      if (Authorize.isAuthenticated()) {
+        const res = await Promise.all([
+          axios.get('/api/users/my-profile/', {
+            headers: {
+              Authorization: `Bearer ${Authorize.getToken()}`
+            }
+          }),
+          axios.get(`https://newsapi.org/v2/top-headlines?country=za&apiKey=${newsApiKey}`),
+        ])
+        this.setState({ articles: res[1].data.articles, userData: res[0].data })
+      } else {
+        const res = await axios.get(`https://newsapi.org/v2/top-headlines?country=za&apiKey=${newsApiKey}`)
+        this.setState({ articles: res.data.articles })
+      }
     } catch (err) {
       console.log(err)
     }
@@ -174,7 +179,7 @@ class TopNews extends React.Component {
     const { articles, userData, countries, countryCode, modalActive, currentArticle } = this.state
     console.log(userData)
     let userArts
-    if (articles && userData) {
+    if (articles && userData && Authorize.isAuthenticated()) {
       userArts = userData.saved_articles.map(art => art.title)
     }
     return (
@@ -183,7 +188,7 @@ class TopNews extends React.Component {
         <div className="container">
           <h1 className="title is-1 has-text-centered">Top Headlines from around the World</h1>
           <hr />
-          {articles && userData ? 
+          {articles ? 
           <>
           <div className="container has-text-centered">
             <form>
