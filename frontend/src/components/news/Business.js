@@ -172,7 +172,7 @@ class Business extends React.Component {
 
   render() {
     const { articles, userData, countries, countryCode, modalActive, currentArticle } = this.state
-    console.log(userData)
+    console.log(articles)
     let userArts
     if (articles && userData && Authorize.isAuthenticated()) {
       userArts = userData.saved_articles.map(art => art.title)
@@ -211,7 +211,7 @@ class Business extends React.Component {
                     <h1 className="title is-4" onClick={() => this.viewArticle(articles[0])} style={{ cursor: 'pointer' }}>
                       {Authorize.isAuthenticated() ? articles[0].title : <Link to="/login" className="has-text-dark">{articles[0].title}</Link>}
                     </h1>
-                    <p className="subtitle is-6">{articles[0].description}</p>
+                    <p className="subtitle is-6">{articles[0].description ? articles[0].description : articles[0].content}</p>
                     {Authorize.isAuthenticated() &&
                       <div className="level">
                         <div className="level-left">
@@ -243,7 +243,7 @@ class Business extends React.Component {
                     <h2 className="title is-5" onClick={() => this.viewArticle(articles[1])} style={{ cursor: 'pointer' }}>
                       {Authorize.isAuthenticated() ? articles[1].title : <Link to="/login" className="has-text-dark">{articles[1].title}</Link>}
                     </h2>
-                    <p className="subtitle is-6">{articles[1].description}</p>
+                    <p className="subtitle is-6">{articles[1].description ? articles[1].description : articles[1].content}</p>
                     {Authorize.isAuthenticated() && 
                       <div className="level">
                         <div className="level-left">
@@ -281,7 +281,7 @@ class Business extends React.Component {
                   <h3 className="title is-5" onClick={() => this.viewArticle(art)} style={{ cursor: 'pointer' }}>
                     {Authorize.isAuthenticated() ? art.title : <Link to="/login" className="has-text-dark">{art.title}</Link>}
                   </h3>
-                  <p className="subtitle is-6">{art.description}</p>
+                  <p className="subtitle is-6">{art.description ? art.description : art.content}</p>
                   <div className="container">
                     {Authorize.isAuthenticated() &&
                       <div className="level">
