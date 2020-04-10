@@ -12,6 +12,8 @@ class Weather extends React.Component {
 
   state = {
     viewport: {
+      height: '100%',
+      width: '100%',
       latitude: 0,
       longitude: 0,
       zoom: 2,
@@ -19,7 +21,7 @@ class Weather extends React.Component {
       pitch: 0,
       center: [0,0]
     },
-    capitals: null,
+    capitals: [],
     weatherData: [],
     currentCap: null,
   }
@@ -27,16 +29,18 @@ class Weather extends React.Component {
   async componentDidMount() {
     try {
       const res = await axios.get('https://restcountries.eu/rest/v2/all')
-      const capital_names = res.data.map(count => count.capital).filter(cap => cap)
-      const capitals = []
-      capital_names.map(async cap => {
-        try {
-          const locRes = await axios.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${cap}.json`, { params: { access_token: mapboxToken } })
-          capitals.push({ name: cap, location: locRes.data.features[0].center  })
-        } catch (err) {
-          console.log(err)
-        }
-      })
+      let capital_names = res.data.map(count => count.capital).filter(cap => cap)
+      let newRes = await Promise.all(
+        capital_names.map(async cap => await axios.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${cap}.json`, { params: { access_token: mapboxToken } }))
+      )
+
+      newRes = newRes.filter(obj => obj.data.features.length !== 0)
+      capital_names = capital_names.filter(cap => cap !== 'Fakaofo')
+
+      const capitals = capital_names.map((cap, i) => (
+        { name: cap, location: newRes[i].data.features[0].center }
+      ))
+
       this.setState({ capitals })
     } catch(err) {
       console.log(err)
@@ -70,15 +74,13 @@ class Weather extends React.Component {
 
   render() {
     const { capitals, currentCap, weatherData } = this.state
-    if (!capitals) return false
+    // console.log(capitals)
     return (
       <>
-      <section className="section" id="world-map" style={{ flexGrow: '1', padding: 0 }}>
-        
-        {/* <div id="" style={{ position: 'absolute', top: '0', bottom: '0' }}></div> */}
+      <section className="section" id="world-map" style={{ flexGrow: '1', padding: 0, width: '100%', display: 'flex' }}>
         <MapGl
-          height={'100%'}
-          width={'100%'}
+          style={{ flexGrow: '1' }}
+          interactive={true}
           container={'world-map'}
           mapStyle="mapbox://styles/mapbox/satellite-streets-v11"
           mapboxApiAccessToken={mapboxToken}
@@ -86,6 +88,9 @@ class Weather extends React.Component {
           onViewportChange={viewport => this.setState({ viewport, currentCap: null, weatherData: [] })}
         >
           <h1 className="title is-1 has-text-white has-text-left">WorldMap</h1>
+          <div style={{ position: 'absolute', right: 0 }}>
+            <NavigationControl />
+          </div>
           {capitals.map((cap, i) => (
             <>
               <Marker 
@@ -95,9 +100,6 @@ class Weather extends React.Component {
               >
                 <span onClick={() => this.goToCity(cap)}>🔹</span>
               </Marker>
-              <div style={{ position: 'absolute', right: 0 }}>
-                <NavigationControl />
-              </div>
             </>
           ))}
           {currentCap &&
