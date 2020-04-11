@@ -209,9 +209,9 @@ class STEM extends React.Component {
           <br />
           <div className="tabs is-mobile is-centered is-medium is-fullwidth is-toggle is-toggle-rounded">
             <ul>
-              <li className={category === 'science' ? 'is-active' : ''} onClick={() => this.changeCategory('science')}><a>Science</a></li>
-              <li className={category === 'technology' ? 'is-active' : ''} onClick={() => this.changeCategory('technology')}><a>Technology</a></li>
-              <li className={category === 'health' ? 'is-active' : ''} onClick={() => this.changeCategory('health')}><a>Health</a></li>
+              <li className={category === 'science' ? 'is-active' : ''} onClick={() => this.changeCategory('science')}><a style={category === 'science' ? { backgroundColor: '#e3120b', border: '1px solid #e3120b' } : {}}>Science</a></li>
+              <li className={category === 'technology' ? 'is-active' : ''} onClick={() => this.changeCategory('technology')}><a style={category === 'technology' ? { backgroundColor: '#e3120b', border: '1px solid #e3120b' } : {}}>Technology</a></li>
+              <li className={category === 'health' ? 'is-active' : ''} onClick={() => this.changeCategory('health')}><a style={category === 'health' ? { backgroundColor: '#e3120b', border: '1px solid #e3120b' } : {}}>Health</a></li>
             </ul>
           </div>
           <div className="tile is-ancestor">

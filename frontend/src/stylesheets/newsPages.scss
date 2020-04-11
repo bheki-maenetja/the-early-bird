@@ -43,7 +43,14 @@
 }
 
 .news-article:hover {
-  background-color: rgba($color: #8abbd0, $alpha: 0.2);
+  border: 2px solid #8abbd0;
+  *:not(i) {
+    font-style: italic;
+  }
+
+  button {
+    font-weight: 700;
+  }
 }
 
 .modal-news-article {
@@ -77,11 +84,11 @@ i.fa-external-link-alt {
   color: cadetblue;
 }
 
-.is-active {
-  font-family: 'Sen', sans-serif;
-  font-weight: 700;
+div.tabs {
+  font-family: 'Bellota Text', sans-serif;
 
-  a {
-    background-color: cyan;
+  .is-active {
+    font-family: 'Sen', sans-serif;
+    font-weight: 700;
   }
 }

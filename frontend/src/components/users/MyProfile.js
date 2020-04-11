@@ -131,8 +131,8 @@ class MyProfile extends React.Component {
           <div className="container">
             <div className="tabs is-medium is-centered is-fullwidth">
               <ul>
-                <li className={selectedTab === 'articles' ? 'is-active' : ''} onClick={() => this.changeTabs('articles')}><a>Saved Articles</a></li>
-                <li className={selectedTab === 'publishers' ? 'is-active' : ''} onClick={() => this.changeTabs('publishers')}><a>Favourite Publishers</a></li>
+                <li className={selectedTab === 'articles' ? 'is-active' : ''} onClick={() => this.changeTabs('articles')}><a style={selectedTab === 'articles' ? { color: '#e3120b', borderBottom: '1px solid #e3120b' } : {}}>Saved Articles</a></li>
+                <li className={selectedTab === 'publishers' ? 'is-active' : ''} onClick={() => this.changeTabs('publishers')}><a style={selectedTab === 'publishers' ? { color: '#e3120b', borderBottom: '1px solid #e3120b' } : {}}>Favourite Publishers</a></li>
               </ul>
             </div>
             {selectedTab === 'articles' &&
