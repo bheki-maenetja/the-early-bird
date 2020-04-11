@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Bellota+Text:ital,wght@0,700;1,400;1,700&family=News+Cycle:wght@400;700&family=Sen:wght@400;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manjari:wght@400;700&display=swap');
+
+.news-page {
+  background-color: #fafafa;
+
+  .container {
+
+    h1.is-1 {
+      color: #e3120b;
+      font-family: 'Bellota Text';
+      font-weight: 700;
+      padding-bottom: 20px;
+      border-bottom: 2px solid #e3120b;
+    }
+  }
+
+  label {
+    font-family: 'Sen', sans-serif;
+  }
+}
+
+
+.news-article {
+  padding: 15px 10px;
+  border-radius: 5px;
+
+  h1, h2, h3 {
+    font-family: 'Sen', sans-serif;
+    cursor: pointer;
+  }
+
+  p {
+    font-family: 'Manjari', sans-serif;
+    font-weight: 400;
+  }
+
+  hr {
+    background-color: #e3120b;
+    margin: 15px 0;
+  }
+}
+
+.news-article:hover {
+  background-color: rgba($color: #8abbd0, $alpha: 0.2);
+  // padding: 10px;
+  // transform: scale(1.1);
+}
+
+i {
+  cursor: pointer;
+}
+
+i.fa-bookmark {
+  color: #e3120b;
+}
+
+i.fa-external-link-alt {
+  color: cadetblue;
+}

@@ -1,6 +1,7 @@
 import React from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
+import '../stylesheets/main.scss'
 import 'bulma'
 import '@fortawesome/fontawesome-free/css/all.css'
 import 'animate.css'
