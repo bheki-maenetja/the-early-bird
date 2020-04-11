@@ -187,10 +187,9 @@ class STEM extends React.Component {
     }
     return (
       <>
-      <section className="section" style={{ flexGrow: '1', overflowY: 'scroll' }}>
+      <section className="section news-page" style={{ flexGrow: '1', overflowY: 'scroll' }}>
         <div className="container">
-          <h1 className="title is-2 has-text-centered">Science &amp; Tech News from around the World</h1>
-          <hr />
+          <h1 className="title is-1 has-text-centered">Science &amp; Tech News from around the World</h1>
           {articles ? 
           <>
           <div className="container has-text-centered">
@@ -219,30 +218,28 @@ class STEM extends React.Component {
             <div className="tile is-vertical is-parent">
               <div className="tile">
                 <div className="tile is-parent is-8">
-                  <div className="tile is-child">
+                  <div className="tile box is-child news-article">
                     <figure className="image is-3by2">
                       <img src={articles[0].urlToImage} alt={articles[0].title} />
                     </figure>
                     <hr />
-                    <h1 className="title is-4" onClick={() => this.viewArticle(articles[0])} style={{ cursor: 'pointer' }}>
-                      {Authorize.isAuthenticated() ? articles[0].title : <Link to="/login" className="has-text-dark">{articles[0].title}</Link>}
-                    </h1>
-                    <p className="subtitle is-6">{articles[0].description ? articles[0].description : articles[0].content}</p>
+                    <h1 className="title is-4" onClick={() => this.viewArticle(articles[0])}>{articles[0].title}</h1>
+                    <p className="subtitle is-6" onClick={() => this.viewArticle(articles[0])}>{articles[0].description ? articles[0].description : articles[0].content}</p>
                     {Authorize.isAuthenticated() &&
                       <div className="level">
                         <div className="level-left">
                           <a href={articles[1].url} target="_blank">
-                            <i className="fas fa-external-link-alt fa-2x has-text-dark"></i>
+                            <i className="fas fa-external-link-alt fa-2x"></i>
                           </a>
                         </div>
                         <div className="level-right">
                           {userArts.includes(articles[0].title) ? 
                           <>
-                            <i className="fas fa-bookmark fa-2x" style={{ cursor: 'pointer' }} onClick={() => this.unsaveArticle(articles[0])}></i>
+                            <i className="fas fa-bookmark fa-2x" onClick={() => this.unsaveArticle(articles[0])}></i>
                           </>
                           :
                           <>
-                            <i className="far fa-bookmark fa-2x" style={{ cursor: 'pointer' }} onClick={() => this.saveArticle(articles[0])}></i>
+                            <i className="far fa-bookmark fa-2x" onClick={() => this.saveArticle(articles[0])}></i>
                           </>
                           }
                         </div>
@@ -251,30 +248,28 @@ class STEM extends React.Component {
                   </div>
                 </div>
                 <div className="tile is-parent">
-                  <div className="tile is-child" >
+                  <div className="tile is-child box news-article" >
                     <figure className="image is-3by2">
                       <img src={articles[1].urlToImage} alt={articles[1].title} />
                     </figure>
                     <hr />
-                    <h2 className="title is-5" onClick={() => this.viewArticle(articles[1])} style={{ cursor: 'pointer' }}>
-                      {Authorize.isAuthenticated() ? articles[1].title : <Link to="/login" className="has-text-dark">{articles[1].title}</Link>}
-                    </h2>
-                    <p className="subtitle is-6">{articles[1].description ? articles[1].description : articles[1].content}</p>
+                    <h2 className="title is-5" onClick={() => this.viewArticle(articles[1])}>{articles[1].title}</h2>
+                    <p className="subtitle is-6" onClick={() => this.viewArticle(articles[1])}>{articles[1].description ? articles[1].description : articles[1].content}</p>
                     {Authorize.isAuthenticated() && 
                       <div className="level">
                         <div className="level-left">
                           <a href={articles[1].url} target="_blank">
-                            <i className="fas fa-external-link-alt fa-2x has-text-dark"></i>
+                            <i className="fas fa-external-link-alt fa-2x"></i>
                           </a>
                         </div>
                         <div className="level-right">
                           {userArts.includes(articles[1].title) ? 
                           <>
-                            <i className="fas fa-bookmark fa-2x" style={{ cursor: 'pointer' }} onClick={() => this.unsaveArticle(articles[1])}></i>
+                            <i className="fas fa-bookmark fa-2x" onClick={() => this.unsaveArticle(articles[1])}></i>
                           </>
                           :
                           <>
-                            <i className="far fa-bookmark fa-2x" style={{ cursor: 'pointer' }} onClick={() => this.saveArticle(articles[1])}></i>
+                            <i className="far fa-bookmark fa-2x" onClick={() => this.saveArticle(articles[1])}></i>
                           </>
                           }
                         </div>
@@ -289,31 +284,29 @@ class STEM extends React.Component {
             {articles.slice(2).map(art => (
               <>
               <div className="column is-one-third-desktop is-half-tablet is-full-mobile">
-                <div className="" style={{ height: '100%' }}>
+                <div className="news-article box" style={{ height: '100%' }}>
                   <figure className="image is-3by2">
                     <img src={art.urlToImage} alt={art.title} />
                   </figure>
                   <hr />
-                  <h3 className="title is-5" onClick={() => this.viewArticle(art)} style={{ cursor: 'pointer' }}>
-                    {Authorize.isAuthenticated() ? art.title : <Link to="/login" className="has-text-dark">{art.title}</Link>}
-                  </h3>
-                  <p className="subtitle is-6">{art.description ? art.description : art.content}</p>
+                  <h3 className="title is-5" onClick={() => this.viewArticle(art)}>{art.title}</h3>
+                  <p className="subtitle is-6" onClick={() => this.viewArticle(art)}>{art.description ? art.description : art.content}</p>
                   <div className="container">
                     {Authorize.isAuthenticated() &&
                       <div className="level">
                         <div className="level-left">
                           <a href={art.url} target="_blank">
-                            <i className="fas fa-external-link-alt fa-2x has-text-dark"></i>
+                            <i className="fas fa-external-link-alt fa-2x"></i>
                           </a>
                         </div>
                         <div className="level-right">
                           {userArts.includes(art.title) ? 
                           <>
-                            <i className="fas fa-bookmark fa-2x" style={{ cursor: 'pointer' }} onClick={() => this.unsaveArticle(art)}></i>
+                            <i className="fas fa-bookmark fa-2x" onClick={() => this.unsaveArticle(art)}></i>
                           </>
                           :
                           <>
-                            <i className="far fa-bookmark fa-2x" style={{ cursor: 'pointer' }} onClick={() => this.saveArticle(art)}></i>
+                            <i className="far fa-bookmark fa-2x" onClick={() => this.saveArticle(art)}></i>
                           </>
                           }
                         </div>
@@ -329,7 +322,7 @@ class STEM extends React.Component {
           <>
           <div className="modal is-active">
             <div className="modal-background" onClick={this.clearModal}></div>
-            <div className="modal-content box">
+            <div className="modal-content box modal-news-article">
               <figure className="image is-4by3">
                 <img src={currentArticle.urlToImage} alt={currentArticle.title} />
               </figure>
@@ -367,9 +360,9 @@ class STEM extends React.Component {
           :
           <>
           <h2 className="title is-2">Loading...</h2>
-          <progress class="progress is-success" max="100">30%</progress>
+          <progress class="progress is-danger" max="100">30%</progress>
           </>
-          }
+          } 
         </div>
       </section>
       </>

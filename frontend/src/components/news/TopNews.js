@@ -123,6 +123,8 @@ class TopNews extends React.Component {
   viewArticle = (article) => {
     if (Authorize.isAuthenticated()) {
       this.setState({ modalActive: true, currentArticle: article })
+    } else {
+      this.props.history.push('/login')
     }
   }
 
@@ -207,15 +209,13 @@ class TopNews extends React.Component {
             <div className="tile is-vertical is-parent">
               <div className="tile">
                 <div className="tile is-parent is-8">
-                  <div className="tile is-child news-article">
+                  <div className="tile box is-child news-article">
                     <figure className="image is-3by2">
                       <img src={articles[0].urlToImage} alt={articles[0].title} />
                     </figure>
                     <hr />
-                    <h1 className="title is-4" onClick={() => this.viewArticle(articles[0])}>
-                      {Authorize.isAuthenticated() ? articles[0].title : <Link to="/login" className="has-text-dark">{articles[0].title}</Link>}
-                    </h1>
-                    <p className="subtitle is-6">{articles[0].description ? articles[0].description : articles[0].content}</p>
+                    <h1 className="title is-4" onClick={() => this.viewArticle(articles[0])}>{articles[0].title}</h1>
+                    <p className="subtitle is-6" onClick={() => this.viewArticle(articles[0])}>{articles[0].description ? articles[0].description : articles[0].content}</p>
                     {Authorize.isAuthenticated() &&
                       <div className="level">
                         <div className="level-left">
@@ -239,15 +239,13 @@ class TopNews extends React.Component {
                   </div>
                 </div>
                 <div className="tile is-parent">
-                  <div className="tile is-child news-article" >
+                  <div className="tile is-child box news-article" >
                     <figure className="image is-3by2">
                       <img src={articles[1].urlToImage} alt={articles[1].title} />
                     </figure>
                     <hr />
-                    <h2 className="title is-5" onClick={() => this.viewArticle(articles[1])}>
-                      {Authorize.isAuthenticated() ? articles[1].title : <Link to="/login" className="has-text-dark">{articles[1].title}</Link>}
-                    </h2>
-                    <p className="subtitle is-6">{articles[1].description ? articles[1].description : articles[1].content}</p>
+                    <h2 className="title is-5" onClick={() => this.viewArticle(articles[1])}>{articles[1].title}</h2>
+                    <p className="subtitle is-6" onClick={() => this.viewArticle(articles[1])}>{articles[1].description ? articles[1].description : articles[1].content}</p>
                     {Authorize.isAuthenticated() && 
                       <div className="level">
                         <div className="level-left">
@@ -277,15 +275,13 @@ class TopNews extends React.Component {
             {articles.slice(2).map(art => (
               <>
               <div className="column is-one-third-desktop is-half-tablet is-full-mobile">
-                <div className="news-article" style={{ height: '100%' }}>
+                <div className="news-article box" style={{ height: '100%' }}>
                   <figure className="image is-3by2">
                     <img src={art.urlToImage} alt={art.title} />
                   </figure>
                   <hr />
-                  <h3 className="title is-5" onClick={() => this.viewArticle(art)}>
-                    {Authorize.isAuthenticated() ? art.title : <Link to="/login" className="has-text-dark">{art.title}</Link>}
-                  </h3>
-                  <p className="subtitle is-6">{art.description ? art.description : art.content}</p>
+                  <h3 className="title is-5" onClick={() => this.viewArticle(art)}>{art.title}</h3>
+                  <p className="subtitle is-6" onClick={() => this.viewArticle(art)}>{art.description ? art.description : art.content}</p>
                   <div className="container">
                     {Authorize.isAuthenticated() &&
                       <div className="level">

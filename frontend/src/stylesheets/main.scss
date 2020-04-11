@@ -20,10 +20,10 @@
   }
 }
 
-
 .news-article {
   padding: 15px 10px;
   border-radius: 5px;
+  background-color: #fafafa;
 
   h1, h2, h3 {
     font-family: 'Sen', sans-serif;
@@ -33,6 +33,7 @@
   p {
     font-family: 'Manjari', sans-serif;
     font-weight: 400;
+    cursor: pointer;
   }
 
   hr {
