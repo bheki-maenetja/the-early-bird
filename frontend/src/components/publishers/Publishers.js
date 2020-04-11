@@ -96,24 +96,23 @@ class Publishers extends React.Component {
     console.log(userData)
     return (
       <>
-      <section className="section" style={{ flexGrow: '1', overflowY: 'scroll' }}>
+      <section className="section publisher-page" style={{ flexGrow: '1', overflowY: 'scroll' }}>
         <div className="container">
           <h1 className="title is-2 has-text-centered">Explore the World's Most Trusted News Sources</h1>
-          <hr />
           <div className="columns is-mobile is-multiline">
             {sources && userData ? 
             <>
               {sources.map(source => (
                 <>
                 <div className="column is-one-third-desktop is-half-tablet is-full-mobile">
-                  <div className="box" style={{ height: '100%' }}>
+                  <div className="box publisher-box" style={{ height: '100%' }}>
                     <h2 className="title is-3">{source.name}</h2>
                     <hr />
                     <p className="subtitle is-5">{source.description}</p>
                     <div className="level is-mobile">
                       <div className="level-left">
                         <a href={source.url} target="_blank">
-                          <i className="fas fa-external-link-alt fa-2x has-text-dark"></i>
+                          <i className="fas fa-external-link-alt fa-2x"></i>
                         </a>
                       </div>
                       <div className="level-right">
@@ -136,7 +135,7 @@ class Publishers extends React.Component {
             :
             <>
             <h1 className="title is-4">Loading...</h1>
-            <progress class="progress is-success" max="100">30%</progress>
+            <progress class="progress is-danger" max="100">30%</progress>
             </> 
             }
           </div>

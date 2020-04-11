@@ -151,7 +151,7 @@ class MyProfile extends React.Component {
                 {userData.saved_articles.map(art => (
                   <>
                   <div className="column is-one-third-desktop is-half-tablet is-full-mobile">
-                    <div className="" style={{ height: '100%' }}>
+                    <div className="box news-article" style={{ height: '100%' }}>
                       <figure className="image is-3by2">
                         <img src={art.image_url} alt={art.title} />
                       </figure>
@@ -164,7 +164,7 @@ class MyProfile extends React.Component {
                         <div className="level">
                           <div className="level-left">
                             <a href={art.source_url} target="_blank">
-                              <i className="fas fa-external-link-alt fa-2x has-text-dark"></i>
+                              <i className="fas fa-external-link-alt fa-2x"></i>
                             </a>
                           </div>
                           <div className="level-right">
@@ -197,14 +197,14 @@ class MyProfile extends React.Component {
                 {userData.favourite_publishers.map(source => (
                   <>
                   <div className="column is-one-third-desktop is-half-tablet is-full-mobile">
-                    <div className="box" style={{ height: '100%' }}>
+                    <div className="box publisher-box" style={{ height: '100%' }}>
                       <h2 className="title is-3">{source.name}</h2>
                       <hr />
                       <p className="subtitle is-5">{source.description}</p>
                       <div className="level is-mobile">
                         <div className="level-left">
                           <a href={source.source_url} target="_blank">
-                            <i className="fas fa-external-link-alt fa-2x has-text-dark"></i>
+                            <i className="fas fa-external-link-alt fa-2x"></i>
                           </a>
                         </div>
                         <div className="level-right">
