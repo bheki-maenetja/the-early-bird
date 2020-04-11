@@ -317,7 +317,7 @@ class TopNews extends React.Component {
           <>
           <div className="modal is-active">
             <div className="modal-background" onClick={this.clearModal}></div>
-            <div className="modal-content box">
+            <div className="modal-content box modal-news-article">
               <figure className="image is-4by3">
                 <img src={currentArticle.urlToImage} alt={currentArticle.title} />
               </figure>
@@ -355,7 +355,7 @@ class TopNews extends React.Component {
           :
           <>
           <h2 className="title is-2">Loading...</h2>
-          <progress class="progress is-success" max="100">30%</progress>
+          <progress class="progress is-danger" max="100">30%</progress>
           </>
           } 
         </div>

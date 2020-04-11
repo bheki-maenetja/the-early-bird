@@ -43,8 +43,25 @@
 
 .news-article:hover {
   background-color: rgba($color: #8abbd0, $alpha: 0.2);
-  // padding: 10px;
-  // transform: scale(1.1);
+}
+
+.modal-news-article {
+  padding: 15px 10px;
+  border-radius: 5px;
+
+  h1, h2, h3 {
+    font-family: 'Sen', sans-serif;
+  }
+
+  p {
+    font-family: 'Manjari', sans-serif;
+    font-weight: 400;
+  }
+
+  hr {
+    background-color: #e3120b;
+    margin: 15px 0;
+  }
 }
 
 i {
