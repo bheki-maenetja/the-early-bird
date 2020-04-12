@@ -131,7 +131,7 @@ class Publishers extends React.Component {
             :
             <>
             <h1 className="title is-4">Loading...</h1>
-            <progress class="progress is-danger" max="100">30%</progress>
+            <progress className="progress is-danger" max="100">30%</progress>
             </> 
             }
           </div>

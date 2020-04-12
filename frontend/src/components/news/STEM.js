@@ -357,7 +357,7 @@ class STEM extends React.Component {
           :
           <>
           <h2 className="title is-2">Loading...</h2>
-          <progress class="progress is-danger" max="100">30%</progress>
+          <progress className="progress is-danger" max="100">30%</progress>
           </>
           } 
         </div>
