@@ -1,0 +1,362 @@
+[
+{
+  "model": "jwt_auth.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$180000$8lw1WO8HESYp$pmTdso8WQJCXH1Ee+VwrpYGvC3yYtRz3iY+ij4jG3xA=",
+    "last_login": "2020-04-02T07:05:22.345Z",
+    "is_superuser": true,
+    "username": "admin",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2020-04-01T08:48:33.581Z",
+    "email": "admin@email.com",
+    "first_name": "",
+    "last_name": "",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "jwt_auth.user",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$180000$JeRjbZlW0fwL$qQ1kGduudEOJmdoYDBRoQ+ziJNASyzS4OIXqifSK2dI=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "user1",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2020-04-01T08:59:14.842Z",
+    "email": "user1@email.com",
+    "first_name": "First",
+    "last_name": "Name",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "jwt_auth.user",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$180000$pCnQ0bVsAsAy$oGecDN+S3MLODXoUG0qrq+JDWVhEvGJhx2UQB+nV+xQ=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "user2",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2020-04-02T07:07:30.512Z",
+    "email": "user2@email.com",
+    "first_name": "Second",
+    "last_name": "User",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "jwt_auth.user",
+  "pk": 4,
+  "fields": {
+    "password": "pbkdf2_sha256$180000$pB0ZcsxbRD4g$BUEnnYJSo6Hw+UyyzBDhW6gjkMB08h1nZV0ptEu18j0=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "user3",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2020-04-02T10:35:43.038Z",
+    "email": "user3@email.com",
+    "first_name": "Third",
+    "last_name": "User",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "jwt_auth.user",
+  "pk": 5,
+  "fields": {
+    "password": "pbkdf2_sha256$180000$PL3gpq2pnEz3$aTqZlqWuWM6Zkx98IKaxCXkKL9MeRb1+Jms9+40g/7g=",
+    "last_login": null,
+    "is_superuser": false,
+    "username": "user4",
+    "is_staff": false,
+    "is_active": true,
+    "date_joined": "2020-04-12T12:59:25.174Z",
+    "email": "user4@email.com",
+    "first_name": "The",
+    "last_name": "Fourth",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "jwt_auth.favouritepublisher",
+  "pk": 30,
+  "fields": {
+    "user": 3,
+    "name": "The Sport Bible",
+    "slug": "the-sport-bible",
+    "description": "TheSPORTbible is one of the largest communities for sports fans across the world. Send us your sporting pictures and videos!",
+    "source_url": "https://www.thesportbible.com"
+  }
+},
+{
+  "model": "jwt_auth.favouritepublisher",
+  "pk": 31,
+  "fields": {
+    "user": 3,
+    "name": "BBC Sport",
+    "slug": "bbc-sport",
+    "description": "The home of BBC Sport online. Includes live sports coverage, breaking news, results, video, audio and analysis on Football, F1, Cricket, Rugby Union, Rugby League, Golf, Tennis and all the main world sports, plus major events such as the Olympic Games.",
+    "source_url": "http://www.bbc.co.uk/sport"
+  }
+},
+{
+  "model": "jwt_auth.favouritepublisher",
+  "pk": 32,
+  "fields": {
+    "user": 3,
+    "name": "ESPN",
+    "slug": "espn",
+    "description": "ESPN has up-to-the-minute sports news coverage, scores, highlights and commentary for NFL, MLB, NBA, College Football, NCAA Basketball and more.",
+    "source_url": "http://espn.go.com"
+  }
+},
+{
+  "model": "jwt_auth.favouritepublisher",
+  "pk": 33,
+  "fields": {
+    "user": 3,
+    "name": "NFL News",
+    "slug": "nfl-news",
+    "description": "The official source for NFL news, schedules, stats, scores and more.",
+    "source_url": "http://www.nfl.com/news"
+  }
+},
+{
+  "model": "jwt_auth.favouritepublisher",
+  "pk": 34,
+  "fields": {
+    "user": 3,
+    "name": "NHL News",
+    "slug": "nhl-news",
+    "description": "The most up-to-date breaking hockey news from the official source including interviews, rumors, statistics and schedules.",
+    "source_url": "https://www.nhl.com/news"
+  }
+},
+{
+  "model": "jwt_auth.favouritepublisher",
+  "pk": 35,
+  "fields": {
+    "user": 3,
+    "name": "TalkSport",
+    "slug": "talksport",
+    "description": "Tune in to the world's biggest sports radio station - Live Premier League football coverage, breaking sports news, transfer rumours &amp; exclusive interviews.",
+    "source_url": "http://talksport.com"
+  }
+},
+{
+  "model": "jwt_auth.favouritepublisher",
+  "pk": 48,
+  "fields": {
+    "user": 2,
+    "name": "BBC News",
+    "slug": "bbc-news",
+    "description": "Use BBC News for up-to-the-minute news, breaking news, video, audio and feature stories. BBC News provides trusted World and UK news as well as local and regional perspectives. Also entertainment, business, science, technology and health news.",
+    "source_url": "http://www.bbc.co.uk/news"
+  }
+},
+{
+  "model": "jwt_auth.favouritepublisher",
+  "pk": 49,
+  "fields": {
+    "user": 2,
+    "name": "Bloomberg",
+    "slug": "bloomberg",
+    "description": "Bloomberg delivers business and markets news, data, analysis, and video to the world, featuring stories from Businessweek and Bloomberg News.",
+    "source_url": "http://www.bloomberg.com"
+  }
+},
+{
+  "model": "jwt_auth.favouritepublisher",
+  "pk": 51,
+  "fields": {
+    "user": 2,
+    "name": "Business Insider",
+    "slug": "business-insider",
+    "description": "Business Insider is a fast-growing business site with deep financial, media, tech, and other industry verticals. Launched in 2007, the site is now the largest business news site on the web.",
+    "source_url": "http://www.businessinsider.com"
+  }
+},
+{
+  "model": "jwt_auth.favouritepublisher",
+  "pk": 52,
+  "fields": {
+    "user": 2,
+    "name": "CNN",
+    "slug": "cnn",
+    "description": "View the latest news and breaking news today for U.S., world, weather, entertainment, politics and health at CNN",
+    "source_url": "http://us.cnn.com"
+  }
+},
+{
+  "model": "jwt_auth.favouritepublisher",
+  "pk": 53,
+  "fields": {
+    "user": 2,
+    "name": "IGN",
+    "slug": "ign",
+    "description": "IGN is your site for Xbox One, PS4, PC, Wii-U, Xbox 360, PS3, Wii, 3DS, PS Vita and iPhone games with expert reviews, news, previews, trailers, cheat codes, wiki guides and walkthroughs.",
+    "source_url": "http://www.ign.com"
+  }
+},
+{
+  "model": "jwt_auth.favouritepublisher",
+  "pk": 54,
+  "fields": {
+    "user": 2,
+    "name": "MSNBC",
+    "slug": "msnbc",
+    "description": "Breaking news and in-depth analysis of the headlines, as well as commentary and informed perspectives from The Rachel Maddow Show, Morning Joe & more.",
+    "source_url": "http://www.msnbc.com"
+  }
+},
+{
+  "model": "jwt_auth.favouritepublisher",
+  "pk": 55,
+  "fields": {
+    "user": 5,
+    "name": "ABC News",
+    "slug": "abc-news",
+    "description": "Your trusted source for breaking news, analysis, exclusive interviews, headlines, and videos at ABCNews.com.",
+    "source_url": "https://abcnews.go.com"
+  }
+},
+{
+  "model": "jwt_auth.favouritepublisher",
+  "pk": 56,
+  "fields": {
+    "user": 5,
+    "name": "BBC News",
+    "slug": "bbc-news",
+    "description": "Use BBC News for up-to-the-minute news, breaking news, video, audio and feature stories. BBC News provides trusted World and UK news as well as local and regional perspectives. Also entertainment, business, science, technology and health news.",
+    "source_url": "http://www.bbc.co.uk/news"
+  }
+},
+{
+  "model": "jwt_auth.favouritepublisher",
+  "pk": 57,
+  "fields": {
+    "user": 5,
+    "name": "Associated Press",
+    "slug": "associated-press",
+    "description": "The AP delivers in-depth coverage on the international, politics, lifestyle, business, and entertainment news.",
+    "source_url": "https://apnews.com/"
+  }
+},
+{
+  "model": "jwt_auth.savedarticle",
+  "pk": 215,
+  "fields": {
+    "user": 2,
+    "publisher": "Ewn.co.za",
+    "author": "Ayanda Nyathi",
+    "title": "COVID-19: Plea to sell alcohol during lockdown could head to court - EWN",
+    "description": "The Gauteng Liquor Forum says its concerned the lockdown regulations introduced by government could be unconstitutional and therefore have no authority under law.",
+    "content": "The Gauteng Liquor Forum says its concerned the lockdown regulations introduced by government could be unconstitutional and therefore have no authority under law.\r\n JOHANNESBURG - The Gauteng Liquor Forum says its concerned the lockdown regulations introduced\u2026 [+1146 chars]",
+    "publish_date": "2020-04-12T06:02:11Z",
+    "source_url": "https://ewn.co.za/2020/04/12/covid-19-fight-to-sell-alcohol-during-lockdown-could-head-to-court",
+    "image_url": "http://cdn.primedia.co.za/primedia-broadcasting/image/upload/c_fill,h_437,w_700/xapsstwweovoehru0vhk"
+  }
+},
+{
+  "model": "jwt_auth.savedarticle",
+  "pk": 216,
+  "fields": {
+    "user": 2,
+    "publisher": "702.co.za",
+    "author": "N/A",
+    "title": "Are South Africans paying too much for fuel? - 702",
+    "description": "Outa has questioned why taxes and levies make up almost 70% of our fuel price. Refiloe Mpakanyane gets input from Warren Tucker.",
+    "content": "Going nowhere slowly, but cheaply... That was the feeling when a local fuel price drop of over R2 a litre was announced during lockdown, because of a trade war and dwindling demand due to the Covid-19 pandemic.\r\nRELATED: Petrol price drops by more than R2 due\u2026 [+2542 chars]",
+    "publish_date": "2020-04-11T14:19:00Z",
+    "source_url": "http://www.702.co.za/articles/380560/are-south-africans-paying-too-much-for-fuel",
+    "image_url": "http://cdn.primedia.co.za/primedia-broadcasting/image/upload/c_limit,fl_progressive,q_80,w_600/mrxf0cpengcc7boklagx"
+  }
+},
+{
+  "model": "jwt_auth.savedarticle",
+  "pk": 217,
+  "fields": {
+    "user": 2,
+    "publisher": "Youtube.com",
+    "author": "N/A",
+    "title": "What Did The Hubble Space Telescope Take A Picture Of On Your Birthday? - CBS Los Angeles",
+    "description": "NASA is celebrating the Hubble Space Telescope's 30th year in orbit by offering a chance to see what photo the telescope took on your birthday.",
+    "content": "N/A",
+    "publish_date": "2020-04-12T04:02:00Z",
+    "source_url": "https://www.youtube.com/watch?v=QPiQyoV8g90",
+    "image_url": "https://i.ytimg.com/vi/QPiQyoV8g90/maxresdefault.jpg"
+  }
+},
+{
+  "model": "jwt_auth.savedarticle",
+  "pk": 222,
+  "fields": {
+    "user": 2,
+    "publisher": "Channel24.co.za",
+    "author": "N/A",
+    "title": "WATCH: Tom Hanks hosts 'SNL' from his home after coronavirus recovery - Channel 24",
+    "description": "One of the longest-running sketch shows in history has found a way to make the world laugh while working from home!",
+    "content": "A lot of viewers, around the world, have been missing Saturday Night Live, since the Covid-19 pandemic changed the way we live from leaving the house to TV shows stopping production.\u00a0\r\nThe weekly sketch and variety show, that features a different celebrity ho\u2026 [+1334 chars]",
+    "publish_date": "2020-04-12T06:27:45Z",
+    "source_url": "https://m.channel24.co.za/TV/News/watch-tom-hanks-hosts-snl-from-his-home-after-coronavirus-recovery-20200412",
+    "image_url": "http://cdn.24.co.za/files/Cms/General/d/6759/b7c67c874ebd4072b09a8b97e5de11ce.jpg"
+  }
+},
+{
+  "model": "jwt_auth.savedarticle",
+  "pk": 223,
+  "fields": {
+    "user": 2,
+    "publisher": "Business Insider",
+    "author": "Tom Porter",
+    "title": "Trump considered allowing the coronavirus to 'wash over' the US - Business Insider",
+    "description": "Last month Trump controversially touted the idea of letting the coronavirus spread without introducing tough lockdown measures.",
+    "content": "President Donald Trump weighed allowing the novel coronavirus to \"wash over\" the US as he considered strategies for dealing with the growing crisis in March, The Washington Post reported.\u00a0\r\nIn a Situation Room meeting on March 14 \u2014 the same day Trump extended\u2026 [+2618 chars]",
+    "publish_date": "2020-04-12T10:26:23Z",
+    "source_url": "http://www.businessinsider.com/trump-considered-allowing-the-coronavirus-to-wash-over-the-us-2020-4",
+    "image_url": "https://i.insider.com/5e92ddf7dcd88c065812fe64?width=1200&format=jpeg"
+  }
+},
+{
+  "model": "jwt_auth.savedarticle",
+  "pk": 224,
+  "fields": {
+    "user": 5,
+    "publisher": "Sport24.co.za",
+    "author": "N/A",
+    "title": "Dalglish hails 'brilliant staff' after positive coronavirus test - Sport24",
+    "description": "Liverpool legend Kenny Dalglish was discharged from hospital after testing positive for coronavirus and hailed medical staff as \"absolutely brilliant.\"",
+    "content": "Liverpool legend Kenny Dalglish was discharged from hospital on Saturday after testing positive for coronavirus and hailed medical staff as \"absolutely brilliant.\"\r\nDalglish, 69, found he had the virus after being admitted to hospital on Wednesday for treatme\u2026 [+2857 chars]",
+    "publish_date": "2020-04-12T05:05:33Z",
+    "source_url": "https://m.sport24.co.za/Soccer/EnglishPremiership/dalglish-hails-brilliant-staff-after-positive-coronavirus-test-20200412",
+    "image_url": "http://cdn.24.co.za/files/Cms/General/d/4749/e9900f5028c848aea084469a2ce2cf49.jpg"
+  }
+},
+{
+  "model": "jwt_auth.savedarticle",
+  "pk": 225,
+  "fields": {
+    "user": 5,
+    "publisher": "Liverpoolecho.co.uk",
+    "author": "Ian Doyle",
+    "title": "Liverpool legend Sir Kenny Dalglish released from hospital after coronavirus diagnosis - Liverpool Echo",
+    "description": "Liverpool legend Sir Kenny Dalglish is back home having been diagnosed with coronavirus while in hospital",
+    "content": "Liverpool legend Sir Kenny Dalglish has praised \"absolutely brilliant\" NHS staff after being released from hospital following a coronavirus diagnosis\r\nDalglish was admitted to hospital on Wednesday for treatment for an infection after suffering from a gallsto\u2026 [+1138 chars]",
+    "publish_date": "2020-04-12T10:26:13Z",
+    "source_url": "https://www.liverpoolecho.co.uk/sport/football/football-news/liverpool-legend-sir-kenny-dalglish-18080194",
+    "image_url": "https://i2-prod.liverpoolecho.co.uk/incoming/article17516562.ece/ALTERNATES/s1200/0_JS199902777.jpg"
+  }
+}
+]

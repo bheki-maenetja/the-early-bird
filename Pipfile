@@ -11,6 +11,7 @@ djangorestframework = "*"
 pyjwt = "*"
 psycopg2-binary = "*"
 django-cors-headers = "*"
+django-heroku = "*"
 
 [requires]
 python_version = "3.8"
