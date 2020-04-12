@@ -1,6 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Bellota+Text:ital,wght@0,700;1,400;1,700&family=News+Cycle:wght@400;700&family=Sen:wght@400;700;800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Manjari:wght@400;700&display=swap');
-
 .news-page {
   background-color: #fafafa;
 
@@ -8,7 +5,7 @@
 
     h1.is-1 {
       color: #e3120b;
-      font-family: 'Bellota Text';
+      font-family: 'Bellota Text', sans-serif;
       font-weight: 700;
       padding-bottom: 20px;
       border-bottom: 2px solid #e3120b;
@@ -44,6 +41,7 @@
 
 .news-article:hover {
   border: 2px solid #8abbd0;
+
   *:not(i) {
     font-style: italic;
   }
