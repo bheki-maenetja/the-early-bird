@@ -11,7 +11,7 @@ class Home extends React.Component {
     return (
       <>   
       <div className="hero is-info home-page" style={{ flexGrow: '1', overflowY: 'scroll' }}>
-        <div className="hero-body columns is-vcentered">
+        <div className="hero-body">
           <div className="container has-text-centered" style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
             <h1 className="title is-2 has-text-centered">Welcome to the World's Most Trusted News Source</h1>
             <h2 className="subtitle is-4 has-text-centered">Get the Latest News in Business, Science, Sports &amp; Entertainment</h2>

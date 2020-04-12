@@ -87,7 +87,7 @@ class Weather extends React.Component {
           {...this.state.viewport}
           onViewportChange={viewport => this.setState({ viewport, currentCap: null, weatherData: [] })}
         >
-          <h1 className="title is-1 has-text-white has-text-left">WorldMap</h1>
+          <h1 className="title is-4 has-text-white has-text-left" style={{ padding: '10px', backgroundColor: 'rgba(0,0,0,0.5)' }}>Get the latest weather for major cities across the world</h1>
           <div style={{ position: 'absolute', right: 0 }}>
             <NavigationControl />
           </div>
@@ -98,7 +98,7 @@ class Weather extends React.Component {
                 latitude={cap.location[1]} 
                 longitude={cap.location[0]}
               >
-                <span onClick={() => this.goToCity(cap)}>🔹</span>
+                <span onClick={() => this.goToCity(cap)} style={{ cursor: 'pointer' }}>🔸</span>
               </Marker>
             </>
           ))}
@@ -108,7 +108,7 @@ class Weather extends React.Component {
               longitude={currentCap.location[0]}
               closeOnClick={true}
             >
-              <h1 className="title is-5">{currentCap.name}</h1>
+              <h1 className="subtitle is-5" style={{ marginBottom: '10px' }}>{currentCap.name}</h1>
               <p>{weatherData.description}</p>
               <p><i className="fas fa-thermometer-half"></i> {Math.round(weatherData.temp)}°C</p>
               <p><i className="fas fa-temperature-low"></i> {Math.round(weatherData.temp_min)}°C</p>
