@@ -1,5 +1,4 @@
 import React from 'react'
-// import { Link } from 'react-router-dom'
 import axios from 'axios'
 
 import Authorize from '../../lib/authorize'
@@ -64,7 +63,6 @@ class MyProfile extends React.Component {
           articleId: article.id
         }
       })
-      console.log(res)
       this.refreshPage()
     } catch (err) {
       console.log(err)
@@ -81,7 +79,6 @@ class MyProfile extends React.Component {
           publisherId: source.id
         }
       })
-      console.log(res)
       this.refreshPage()
     } catch (err) {
       console.log(err)
@@ -91,7 +88,6 @@ class MyProfile extends React.Component {
   render() {
     const { userData, selectedTab, modalActive, currentArticle } = this.state
     if (!userData) return false
-    console.log(userData)
     return (
       <>
       <div style={{ flexGrow: '1', overflowY: 'scroll' }}>

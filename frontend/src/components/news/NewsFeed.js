@@ -75,7 +75,6 @@ class NewsFeed extends React.Component {
           Authorization: `Bearer ${Authorize.getToken()}`
         }
       })
-      console.log(res)
       this.refreshPage()
     } catch (err) {
       console.log(err)
@@ -95,7 +94,6 @@ class NewsFeed extends React.Component {
           articleId: chosenArticle.id
         }
       })
-      console.log(res)
       this.refreshPage()
     } catch (err) {
       console.log(err)
@@ -108,7 +106,6 @@ class NewsFeed extends React.Component {
 
   render() {
     const { articles, userData, modalActive, currentArticle } = this.state
-    console.log(userData)
     if (!userData) return false
     let userArts
     if (articles && userData && Authorize.isAuthenticated()) {

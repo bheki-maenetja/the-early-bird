@@ -147,7 +147,6 @@ class STEM extends React.Component {
           Authorization: `Bearer ${Authorize.getToken()}`
         }
       })
-      console.log(res)
       this.refreshPage()
     } catch (err) {
       console.log(err)
@@ -167,7 +166,6 @@ class STEM extends React.Component {
           articleId: chosenArticle.id
         }
       })
-      console.log(res)
       this.refreshPage()
     } catch (err) {
       console.log(err)
@@ -180,7 +178,6 @@ class STEM extends React.Component {
 
   render() {
     const { articles, userData, countries, countryCode, modalActive, currentArticle, category } = this.state
-    console.log(userData)
     let userArts
     if (articles && userData && Authorize.isAuthenticated()) {
       userArts = userData.saved_articles.map(art => art.title)

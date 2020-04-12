@@ -59,7 +59,6 @@ class Publishers extends React.Component {
           Authorization: `Bearer ${Authorize.getToken()}`
         }
       })
-      console.log(res)
       this.refreshPage()
     } catch (err) {
       console.log(err)
@@ -79,7 +78,6 @@ class Publishers extends React.Component {
           publisherId: chosenSource.id
         }
       })
-      console.log(res)
       this.refreshPage()
     } catch (err) {
       console.log(err)
@@ -88,12 +86,10 @@ class Publishers extends React.Component {
 
   render() {
     const { sources, userData } = this.state
-    console.log(sources)
     let userPubs
     if (sources && userData) {
       userPubs = userData.favourite_publishers.map(pub => pub.slug)
     }
-    console.log(userData)
     return (
       <>
       <section className="section publisher-page" style={{ flexGrow: '1', overflowY: 'scroll' }}>

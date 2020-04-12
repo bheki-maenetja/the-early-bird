@@ -141,7 +141,6 @@ class Entertainment extends React.Component {
           Authorization: `Bearer ${Authorize.getToken()}`
         }
       })
-      console.log(res)
       this.refreshPage()
     } catch (err) {
       console.log(err)
@@ -161,7 +160,6 @@ class Entertainment extends React.Component {
           articleId: chosenArticle.id
         }
       })
-      console.log(res)
       this.refreshPage()
     } catch (err) {
       console.log(err)
@@ -174,7 +172,6 @@ class Entertainment extends React.Component {
 
   render() {
     const { articles, userData, countries, countryCode, modalActive, currentArticle } = this.state
-    console.log(userData)
     let userArts
     if (articles && userData && Authorize.isAuthenticated()) {
       userArts = userData.saved_articles.map(art => art.title)

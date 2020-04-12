@@ -146,7 +146,6 @@ class TopNews extends React.Component {
           Authorization: `Bearer ${Authorize.getToken()}`
         }
       })
-      console.log(res)
       this.refreshPage()
     } catch (err) {
       console.log(err)
@@ -166,7 +165,6 @@ class TopNews extends React.Component {
           articleId: chosenArticle.id
         }
       })
-      console.log(res)
       this.refreshPage()
     } catch (err) {
       console.log(err)

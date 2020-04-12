@@ -3,20 +3,29 @@
 
 .profile-info {
   background-color: #acc8d4;
+  color: white;
 
   h1.is-1 {
     font-family: 'Bellota Text', sans-serif;
     font-weight: 700;
-    color: black
+    color: white;
+    text-shadow: 2px 2px black;
   }
 
   hr {
     background-color: #e3120b;
   }
 
-  p {
-    font-family: 'Sen', sans-serif;
+  p.heading {
     color: black;
+    font-family: 'Manjari', sans-serif;
+    font-weight: 700;
+  }
+
+  p.title {
+    font-family: 'Sen', sans-serif;
+    color: white;
+    text-shadow: 1px 2px black;
   }
 }
 

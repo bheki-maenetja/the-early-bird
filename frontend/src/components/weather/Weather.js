@@ -74,7 +74,6 @@ class Weather extends React.Component {
 
   render() {
     const { capitals, currentCap, weatherData } = this.state
-    // console.log(capitals)
     return (
       <>
       <section className="section" id="world-map" style={{ flexGrow: '1', padding: 0, width: '100%', display: 'flex' }}>
