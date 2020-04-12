@@ -33,13 +33,13 @@ class Login extends React.Component {
   render() {
     return (
       <>
-      <section className="section" style={{ flexGrow: 1, display: 'flex', alignItems: 'center'  }}>
+      <section className="section auth-page" style={{ flexGrow: 1, display: 'flex', alignItems: 'center'  }}>
         <div className="container">
           <div className="columns">
-            <form className="column is-half is-offset-one-quarter" style={{ backgroundColor: 'rgba(0,0,0,0.6)', padding: '20px', borderRadius: '25px' }}>
-              <h2 className="title is-2 has-text-centered has-text-white">Login</h2>
+            <form className="column is-half is-offset-one-quarter auth-form">
+              <h2 className="title is-2 has-text-centered">Login</h2>
               <div className="field">
-                <label className="label has-text-white">Email</label>
+                <label className="label">Email</label>
                 <div className="control">
                   <input 
                     type="text"
@@ -52,7 +52,7 @@ class Login extends React.Component {
                 </div>
               </div>
               <div className="field">
-                <label className="label has-text-white">Password</label>
+                <label className="label">Password</label>
                 <div className="control">
                   <input 
                     type="password" 
@@ -66,11 +66,11 @@ class Login extends React.Component {
               </div>
               <div className="field">
                 <div className="control">
-                  <button className="button is-primary is-fullwidth" onClick={this.loginUser}>Login</button>
+                  <button className="button is-fullwidth" onClick={this.loginUser}>Login</button>
                 </div>
                 <br />
                 <div className="container">
-                  <p className="has-text-centered has-text-white has-text-weight-bold">Don't have an account? <Link to="/register" className="has-text-warning">Register</Link></p>
+                  <p className="has-text-centered has-text-white has-text-weight-bold">Don't have an account? <Link to="/register" className="has-text-link">Register</Link></p>
                 </div>
               </div>
             </form>

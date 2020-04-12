@@ -36,14 +36,14 @@ class Register extends React.Component {
   render() {
     return (
       <>
-      <section className="section" style={{ flexGrow: 1, display: 'flex', alignItems: 'center', overflowY: 'scroll'  }}>
+      <section className="section auth-page" style={{ flexGrow: 1, display: 'flex', alignItems: 'center', overflowY: 'scroll'  }}>
         <div className="container">
           <div className="columns">
-            <form className="column is-half is-offset-one-quarter" style={{ height: '100%', backgroundColor: 'rgba(0,0,0,0.5)', padding: '20px', borderRadius: '15px' }}>
-              <h2 className="title is-2 has-text-centered has-text-white">Register</h2>
-              <div className="field">
-                <label className="label has-text-white">First Name</label>
-                <div className="control">
+            <form className="column is-half is-offset-one-quarter auth-form">
+              <h2 className="title is-2 has-text-centered">Register</h2>
+              <div className="field is-grouped">
+                <div className="control is-expanded">
+                  <label className="label">First Name</label>
                   <input 
                     type="text"
                     className={`input ${this.state.errors.first_name ? 'is-danger' : ''}`}
@@ -54,10 +54,8 @@ class Register extends React.Component {
                   />
                   {this.state.errors.first_name && <small className="has-text-danger">{this.state.errors.first_name[0]}</small>}
                 </div>
-              </div>
-              <div className="field">
-                <label className="label has-text-white">Last Name</label>
-                <div className="control">
+                <div className="control is-expanded">
+                  <label className="label">Last Name</label>
                   <input
                     type="text"
                     className={`input ${this.state.errors.last_name ? 'is-danger' : ''}`}
@@ -69,9 +67,9 @@ class Register extends React.Component {
                   {this.state.errors.last_name && <small className="has-text-danger">{this.state.errors.last_name[0]}</small>}
                 </div>
               </div>
-              <div className="field">
-                <label className="label has-text-white">Username</label>
-                <div className="control">
+              <div className="field is-grouped">
+                <div className="control is-expanded">
+                  <label className="label">Username</label>
                   <input 
                     type="text"
                     className={`input ${this.state.errors.username ? 'is-danger' : ''}`}
@@ -82,10 +80,8 @@ class Register extends React.Component {
                   />
                   {this.state.errors.username && <small className="has-text-danger">{this.state.errors.username[0]}</small>}
                 </div>
-              </div>
-              <div className="field">
-                <label className="label has-text-white">Email</label>
-                <div className="control">
+                <div className="control is-expanded">
+                  <label className="label">Email</label>
                   <input 
                     type="text"
                     className={`input ${this.state.errors.email ? 'is-danger' : ''}`}
@@ -98,7 +94,7 @@ class Register extends React.Component {
                 </div>
               </div>
               <div className="field">
-                <label className="label has-text-white">Password</label>
+                <label className="label">Password</label>
                 <div className="control">
                   <input 
                     type="text"
@@ -112,7 +108,7 @@ class Register extends React.Component {
                 </div>
               </div>
               <div className="field">
-                <label className="label has-text-white">Password Confirmation</label>
+                <label className="label">Password Confirmation</label>
                 <div className="control">
                   <input 
                     type="text"
@@ -131,7 +127,7 @@ class Register extends React.Component {
                 </div>
                 <br />
                 <div className="container">
-                  <p className="has-text-centered has-text-white has-text-weight-bold">Already have an account? <Link to="/login" className="has-text-warning">Login</Link></p>
+                  <p className="has-text-centered has-text-white has-text-weight-bold">Already have an account? <Link to="/login" className="has-text-link">Login</Link></p>
                 </div>
               </div>
             </form>

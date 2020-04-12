@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Bellota+Text:ital,wght@0,700;1,400;1,700&family=News+Cycle:wght@400;700&family=Sen:wght@400;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manjari:wght@400;700&display=swap');
+
+section.auth-page {
+  background-color: #fafafa;
+}
+
+form.auth-form {
+  background-color: #acc8d4;
+  padding: 30px;
+  border: 2px solid #e3120b;
+  border-radius: 10px;
+
+  h2.is-2 {
+    font-family: 'Bellota Text', sans-serif;
+    font-weight: 700;
+  }
+
+  label {
+    font-family: 'Sen', sans-serif;
+  }
+
+  button.is-fullwidth {
+    background-color: #336666;
+    border: 1px solid #9ae5de;
+    color: white;
+    font-family: 'Sen';
+    font-weight: 700;
+  }
+
+  button.is-fullwidth:hover {
+    background-color: #9ae5de;
+    border: 1px solid #336666;
+    color: black;
+  }
+
+  label, h2.is-2 {
+    color: black;
+  }
+}
