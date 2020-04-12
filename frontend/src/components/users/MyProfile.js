@@ -95,9 +95,9 @@ class MyProfile extends React.Component {
     return (
       <>
       <div style={{ flexGrow: '1', overflowY: 'scroll' }}>
-        <div className="hero is-small is-info">
+        <div className="hero is-small profile-info">
           <div className="hero-body">
-            <h1 className="title is-2 has-text-centered">My Profile</h1>
+            <h1 className="title is-1 has-text-centered">My Profile</h1>
             <hr />
             <div className="level">
               <div className="level-item has-text-centered">

@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Bellota+Text:ital,wght@0,700;1,400;1,700&family=News+Cycle:wght@400;700&family=Sen:wght@400;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manjari:wght@400;700&display=swap');
+
+.profile-info {
+  background-color: #acc8d4;
+
+  h1.is-1 {
+    font-family: 'Bellota Text', sans-serif;
+    font-weight: 700;
+    color: black
+  }
+
+  hr {
+    background-color: #e3120b;
+  }
+
+  p {
+    font-family: 'Sen', sans-serif;
+    color: black;
+  }
+}
+
+h1.subtitle.is-2 {
+  font-family: 'Bellota Text';
+  font-weight: 700;
+  font-style: italic;
+}
