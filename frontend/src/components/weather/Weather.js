@@ -49,7 +49,7 @@ class Weather extends React.Component {
 
   getWeatherData = async (cap) => {
     try {
-      const res = await axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${cap.name}&units=metric&appid=${weatherKey}`)
+      const res = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${cap.name}&units=metric&appid=${weatherKey}`)
       const weatherData = {
         description: res.data.weather[0].description,
         temp: res.data.main.temp,
