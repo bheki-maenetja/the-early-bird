@@ -29,11 +29,11 @@ class Navbar extends React.Component {
       <>
       <nav className="navbar is-dark">
         <div className="container">
-          <div className="navbar-brand">
-            <Link className="navbar-item" onClick={() => this.setState({ navbarOpen: false, dropdownOpen: false })} to="/">
+          <div className="navbar-brand is-size-4">
+            <Link className="navbar-item is-size-5" onClick={() => this.setState({ navbarOpen: false, dropdownOpen: false })} to="/">
               <i className="fas fa-home fa-2x"></i>
             </Link>
-            <a className={`navbar-burger ${navbarOpen ? 'is-active' : ''}`} onClick={this.toggleNavbar}>
+            <a className={`navbar-burger is-size-4 ${navbarOpen ? 'is-active' : ''}`} onClick={this.toggleNavbar}>
               <span></span>
               <span></span>
               <span></span>
@@ -41,11 +41,11 @@ class Navbar extends React.Component {
           </div>
           <div className={`navbar-menu ${navbarOpen ? 'is-active' : ''}`}>
             <div className="navbar-end">
-              {!Authorize.isAuthenticated() && <Link className="navbar-item" onClick={() => this.setState({ navbarOpen: false, dropdownOpen: false })} to="/news/top">Top News</Link>}
-              {Authorize.isAuthenticated() && <Link className="navbar-item" onClick={() => this.setState({ navbarOpen: false, dropdownOpen: false })} to="/newsfeed">Newsfeed</Link>}
+              {!Authorize.isAuthenticated() && <Link className="navbar-item is-size-4" onClick={() => this.setState({ navbarOpen: false, dropdownOpen: false })} to="/news/top">Top News</Link>}
+              {Authorize.isAuthenticated() && <Link className="navbar-item is-size-4" onClick={() => this.setState({ navbarOpen: false, dropdownOpen: false })} to="/newsfeed">Newsfeed</Link>}
               {Authorize.isAuthenticated() &&
                 <>
-                <div className={`navbar-item has-dropdown ${dropdownOpen ? 'is-active' : ''}`}>
+                <div className={`navbar-item has-dropdown is-size-4 ${dropdownOpen ? 'is-active' : ''}`}>
                   <a className="navbar-link" onClick={this.toggleDropdown}>News</a>
                   {dropdownOpen &&  
                     <div className="navbar-dropdown">
@@ -59,12 +59,12 @@ class Navbar extends React.Component {
                 </div>
                 </>
               }
-              {Authorize.isAuthenticated() && <Link className="navbar-item" onClick={() => this.setState({ navbarOpen: false, dropdownOpen: false })} to="/publishers">Publishers</Link>}
-              {Authorize.isAuthenticated() && <Link className="navbar-item" onClick={() => this.setState({ navbarOpen: false, dropdownOpen: false })} to="/weather">Weather</Link>}
-              {!Authorize.isAuthenticated() && <Link className="navbar-item" onClick={() => this.setState({ navbarOpen: false, dropdownOpen: false })} to="/login">Login</Link>}
-              {!Authorize.isAuthenticated() && <Link className="navbar-item" onClick={() => this.setState({ navbarOpen: false, dropdownOpen: false })} to="/register">Register</Link>}
-              {Authorize.isAuthenticated() && <Link className="navbar-item" onClick={() => this.setState({ navbarOpen: false, dropdownOpen: false })} to="/my-profile">Profile</Link>}
-              {Authorize.isAuthenticated() && <Link className="navbar-item" onClick={this.handleLogOut} to="/">Logout</Link>}
+              {Authorize.isAuthenticated() && <Link className="navbar-item is-size-4" onClick={() => this.setState({ navbarOpen: false, dropdownOpen: false })} to="/publishers">Publishers</Link>}
+              {Authorize.isAuthenticated() && <Link className="navbar-item is-size-4" onClick={() => this.setState({ navbarOpen: false, dropdownOpen: false })} to="/weather">Weather</Link>}
+              {!Authorize.isAuthenticated() && <Link className="navbar-item is-size-4" onClick={() => this.setState({ navbarOpen: false, dropdownOpen: false })} to="/login">Login</Link>}
+              {!Authorize.isAuthenticated() && <Link className="navbar-item is-size-4" onClick={() => this.setState({ navbarOpen: false, dropdownOpen: false })} to="/register">Register</Link>}
+              {Authorize.isAuthenticated() && <Link className="navbar-item is-size-4" onClick={() => this.setState({ navbarOpen: false, dropdownOpen: false })} to="/my-profile">Profile</Link>}
+              {Authorize.isAuthenticated() && <Link className="navbar-item is-size-4" onClick={this.handleLogOut} to="/">Logout</Link>}
             </div>
           </div>
         </div>

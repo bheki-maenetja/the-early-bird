@@ -2,7 +2,7 @@ import React from 'react'
 
 const Header = () => (
   <>
-  <div className="hero is-small is-primary">
+  <div className="hero is-small header">
     <div className="hero-body">
       <div className="container has-text-centered">
         <i className="fas fa-dove fa-5x"></i>

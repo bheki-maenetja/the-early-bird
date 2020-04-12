@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Manjari:wght@400;700&display=swap');
 
 div.hero.home-page {
-  background-image: url('https://i.pinimg.com/originals/e9/92/58/e99258375f05d919ae92f19a4553e8bb.gif');
+  background-image: url('../assets/homePage-background.gif');
   background-size: cover;
   background-position: center;
 
@@ -18,17 +18,18 @@ div.hero.home-page {
   h1.title {
     border-radius: 10px 10px 0 0;
     padding-top: 20px;
-    font-family: 'Sen';
+    font-family: 'Sen', sans-serif;
     font-weight: 700;
   }
 
   h2.subtitle {
     padding-bottom: 20px;
+    font-family: 'Bellota Text', sans-serif;
+    font-weight: 700;
     border-radius: 0 0 10px 10px;
   }
 
   button.is-large {
-    // background-color: #4a4a4a;
     color: white;
     font-family: 'Sen';
     font-weight: 700;
@@ -45,9 +46,4 @@ div.hero.home-page {
     border-radius: 10px;
     margin-top: 10px;
   }
-
-  // button.is-large:hover {
-  //   background-color: #e3120b;
-  //   color: invert($color: #000000);
-  // }
 }
