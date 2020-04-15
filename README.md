@@ -27,6 +27,7 @@ The Early Bird is a news website that provides the latest news and top headlines
   * [NewsAPI](https://newsapi.org/)
   * [Mapbox](https://www.mapbox.com/)
   * [OpenWeatherAPI](https://openweathermap.org/api)
+  * [REST Countries](https://restcountries.eu/)
 
 ## Overview
 This project is a news site that provides users with the latest news and top headlines from a multitude of different sources across 54 countries around the world. Users can save their favourite news articles and follow their favourite publishers. When logged in, users will have a newsfeed consisting of top stories from their favourite news sources. Additionally, the site also features a weather application where users can get the latest weather conditions for major cities across the world.
@@ -87,4 +88,19 @@ class ArticleView(APIView):
       return Response(status=HTTP_204_NO_CONTENT)
     except:
       return Response({'message': 'Not found'}, status=HTTP_404_NOT_FOUND)
-```  
+```
+
+## Reflection
+### Challenges
+- **Rendering News Articles:** one of the main challenges for the project was finding a way to render article information in a layout that maximised readability for the user. Much experimentation was done with Bulma tiles, columns and boxes.
+- **Weather Application:** the most difficult part of the project was the implementation of the weather application. The first hurdle was getting locational data for major cities across the world. Once this data was retrieved a request had to be made for to the [OpenWeatherAPI](https://openweathermap.org/api) to get the latest weather for the city. Instead of making all the weather requests all at once, markers are placed on a map that denote the location of a particular. It is only when these markers are clicked that a request is made to the weather API.
+
+### Room for Improvement
+- **Design & Styling:** although there are no layout issues on desktop or tablet devices the site is not yet fully optimized for a mobile experience. This can be fixed with a few media queries and slight adjustments to the layout of articles.
+- **Weather App Markers:** markers that denote the location of cities are not positioned where they should be when the app is initially loaded. It's only when the user zooms in on the map that markers slide into place.
+
+## Future Features
+- **Weather Forecasts:** at present the weather application only provides information regarding the current weather conditions in a particular location. Weather forecasts would allow users to know what the weather will be like in the next 3 - 5 days.
+- **Advanced Newsfeed Settings:** in this version of The Early Bird users can only cofigure their newsfeed by changing the new sources they follow. In the future, this feature will be extened to allow users to configure their newsfeed according to their favourite news categories and countries of interest. 
+- **News Notifications:** given that news stories are updated every 15 minutes, this feature would alert users to new developments in their favourite categories of news or countries of interest.
+      
