@@ -35,10 +35,10 @@ This project is a news site that provides users with the latest news and top hea
 <figcaption>Home Page</figcation>
 <img src="frontend/src/assets/screenshot-homePage.png" width="100%" />
 
-<figcaption>User's can get top news headlines from over 50 Countries</figcaption>
+<figcaption>Users can get top news headlines from over 50 Countries</figcaption>
 <img src="frontend/src/assets/screenshot-topNewsPage.gif" width="100%" />
 
-<figcaption>User's can save articles and follow their favourite publishers</figcation>
+<figcaption>Users can save articles and follow their favourite publishers</figcation>
 <img src="frontend/src/assets/screenshot-profilePage.gif" width="100%" />
 
 <figcaption>The Early Bird gets articles from dozens of news sources around the world</figcation>
