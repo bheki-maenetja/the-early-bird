@@ -12,6 +12,7 @@ pyjwt = "*"
 psycopg2-binary = "*"
 django-cors-headers = "*"
 django-heroku = "*"
+requests = "*"
 
 [requires]
 python_version = "3.8"

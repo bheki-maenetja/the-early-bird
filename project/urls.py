@@ -20,5 +20,6 @@ from .views import index
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/users/', include('jwt_auth.urls')),
+    path('api/articles/', include('articles.urls')),
     re_path(r'^.*$', index)
 ]
