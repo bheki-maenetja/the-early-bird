@@ -19,7 +19,9 @@ class Publishers extends React.Component {
             Authorization: `Bearer ${Authorize.getToken()}`
           }
         }),
-        axios.get(`https://newsapi.org/v2/sources?&apiKey=${newsApiKey}`)
+        axios.post('/api/articles/get-articles/', {
+            api_url: `https://newsapi.org/v2/sources?&apiKey=${newsApiKey}`
+        })
       ])
       this.setState({ sources: res[1].data.sources, userData: res[0].data })
     } catch (err) {

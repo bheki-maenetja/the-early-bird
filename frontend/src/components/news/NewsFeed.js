@@ -44,10 +44,12 @@ class NewsFeed extends React.Component {
 
   getArticles = async (publishers) => {
     try {
-      const res = await axios.get(`https://newsapi.org/v2/top-headlines?sources=${publishers.join()}&apiKey=${newsApiKey}`)
-      this.setState({ articles: res.data.articles })
+        const newRes = await axios.post('/api/articles/get-articles/', {
+            api_url: `https://newsapi.org/v2/top-headlines?sources=${publishers.join()}&apiKey=${newsApiKey}`
+        })
+        this.setState({ articles: newRes.data.articles })
     } catch (err) {
-      console.log(err)
+        console.log(err)
     }
   }
 

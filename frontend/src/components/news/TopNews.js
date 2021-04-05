@@ -5,7 +5,6 @@ import axios from 'axios'
 import Authorize from '../../lib/authorize'
 
 const newsApiKey = process.env.REACT_APP_NEWS_API_KEY
-console.log(newsApiKey);
 
 class TopNews extends React.Component {
 
@@ -113,8 +112,10 @@ class TopNews extends React.Component {
 
   getArticles = async (code) => {
     try {
-        const res = await axios.get(`https://newsapi.org/v2/top-headlines?country=${code}&apiKey=${newsApiKey}`)
-        this.setState({ articles: res.data.articles })
+        const newRes = await axios.post('/api/articles/get-articles/', {
+            api_url: `https://newsapi.org/v2/top-headlines?country=${code}&apiKey=${newsApiKey}`
+        })
+        this.setState({ articles: newRes.data.articles })
     } catch (err) {
       console.log(err)
     }

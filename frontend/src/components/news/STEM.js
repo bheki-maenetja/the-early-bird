@@ -81,7 +81,9 @@ class STEM extends React.Component {
             Authorization: `Bearer ${Authorize.getToken()}`
           }
         }),
-        axios.get(`https://newsapi.org/v2/top-headlines?category=science&country=za&apiKey=${newsApiKey}`)
+        axios.post('/api/articles/get-articles/', {
+            api_url: `https://newsapi.org/v2/top-headlines?category=science&country=za&apiKey=${newsApiKey}`
+        })
       ])
       this.setState({ articles: res[1].data.articles, userData: res[0].data  })
     } catch (err) {
@@ -104,10 +106,13 @@ class STEM extends React.Component {
 
   getArticles = async (countryCode, category) => {
     try {
-      const res = await axios.get(`https://newsapi.org/v2/top-headlines?category=${category}&country=${countryCode}&apiKey=${newsApiKey}`)
-      this.setState({ articles: res.data.articles })
+        const newRes = await axios.post('/api/articles/get-articles/', {
+            api_url: `https://newsapi.org/v2/top-headlines?category=${category}&country=${countryCode}&apiKey=${newsApiKey}`
+        })
+        console.log(newRes.data.articles);
+        this.setState({ articles: newRes.data.articles })
     } catch (err) {
-      console.log(err)
+        console.log(err)
     }
   }
 
