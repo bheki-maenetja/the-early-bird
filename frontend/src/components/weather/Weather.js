@@ -109,9 +109,9 @@ class Weather extends React.Component {
             >
               <h1 className="subtitle is-5" style={{ marginBottom: '10px' }}>{currentCap.name}</h1>
               <p>{weatherData.description}</p>
-              <p><i className="fas fa-thermometer-half"></i> {Math.round(weatherData.temp)}°C</p>
-              <p><i className="fas fa-temperature-low"></i> {Math.round(weatherData.temp_min)}°C</p>
-              <p><i className="fas fa-temperature-high"></i> {Math.round(weatherData.temp_max)}°C</p>
+              <p><i className="fas fa-temperature-high"></i> {`Max: ${Math.round(weatherData.temp_max)}°C`}</p>
+              <p><i className="fas fa-temperature-low"></i> {`Min: ${Math.round(weatherData.temp_min)}°C`}</p>
+              <p><i className="fas fa-thermometer-half"></i> {`Avg: ${Math.round(weatherData.temp)}°C`}</p>
               <p><i className="fas fa-wind"></i> {Math.round(weatherData.wind_speed * 3.6)} kph</p>
               <p><i className="fas fa-tint"></i> {weatherData.humidity}%</p>
             </Popup>

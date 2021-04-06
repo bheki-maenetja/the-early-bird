@@ -109,7 +109,6 @@ class STEM extends React.Component {
         const newRes = await axios.post('/api/articles/get-articles/', {
             api_url: `https://newsapi.org/v2/top-headlines?category=${category}&country=${countryCode}&apiKey=${newsApiKey}`
         })
-        console.log(newRes.data.articles);
         this.setState({ articles: newRes.data.articles })
     } catch (err) {
         console.log(err)
