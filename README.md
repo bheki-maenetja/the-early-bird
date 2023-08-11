@@ -3,11 +3,11 @@ The Early Bird is a news website that provides the latest news and top headlines
 
 ## Getting Started
 ### Installation
-- Clone this repository by running the terminal command `git clone git@github.com:bheki-maenetja/the-early-bird.git`
-- In the root folder run the terminal command `pipenv shell`
-- In the root folder run the terminal command `pipenv install` to install all necessary packages and modules for the backend
-- Navigate to the folder called frontend and run ther terminal command `yarn` to install all necessary packages and modules for the frontend
-- To view the site locally run the terminal command `python manage.py runserver` and navigate to localhost:8000 in your web browser
+- Clone this repository by running the terminal command `git clone git@github.com:bheki-maenetja/the-early-bird.git`.
+- In the root folder run the terminal command `pipenv shell`.
+- In the root folder run the terminal command `pipenv install` to install all necessary packages and modules for the backend.
+- Navigate to the folder called frontend and run ther terminal command `yarn` to install all necessary packages and modules for the frontend.
+- To view the site locally run the terminal command `python manage.py runserver` and navigate to localhost:8000 in your web browser.
 
 ### Deployment
 - You can view a deployed version of the site [here](https://the-early-bird.herokuapp.com/)
@@ -23,7 +23,7 @@ The Early Bird is a news website that provides the latest news and top headlines
 - Bulma CSS Framework
 - Yarn
 - Axios
-* Third-party APIs
+- Third-party APIs
   * [NewsAPI](https://newsapi.org/)
   * [Mapbox](https://www.mapbox.com/)
   * [OpenWeatherAPI](https://openweathermap.org/api)
