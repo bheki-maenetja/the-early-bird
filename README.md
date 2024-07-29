@@ -9,9 +9,6 @@ The Early Bird is a news website that provides the latest news and top headlines
 - Navigate to the folder called frontend and run ther terminal command `yarn` to install all necessary packages and modules for the frontend.
 - To view the site locally run the terminal command `python manage.py runserver` and navigate to localhost:8000 in your web browser.
 
-### Deployment
-- You can view a deployed version of the site [here](https://the-early-bird-8441528f3094.herokuapp.com/)
-
 ## Technologies Used
 - Python 3
 - Django
